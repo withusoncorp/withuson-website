@@ -51,7 +51,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
+        from: '위더스온 홈페이지 <noreply@withusoncorp.co.kr>',
         to: ADMIN_EMAIL,
         reply_to: email,
         subject: `[위더스온] 새 문의 - ${typeLabel} (${name})`,
