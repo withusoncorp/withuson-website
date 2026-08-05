@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>관리자 | 위더스온</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: '#A2AD24', dark: '#7C8620', darker: '#5E661A', light: '#C9D35E', 50: '#F8F9EC', 100: '#EEF0D2' },
+          forest: { DEFAULT: '#37452C', dark: '#26301C', darker: '#1A2212' },
+          ink: '#26301C', inksoft: '#5C6653', canvas: '#FBFAF3',
+        },
+        fontFamily: { sans: ['Pretendard', '-apple-system', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+<style>
+  body { font-family: 'Pretendard', -apple-system, sans-serif; background: #FBFAF3; color: #26301C; }
+  .field { transition: border-color .2s ease, box-shadow .2s ease; }
+  .field:focus { outline: none; border-color: #A2AD24; box-shadow: 0 0 0 4px rgba(162,173,36,0.16); }
+  .btn { transition: transform .15s ease, background-color .15s ease, opacity .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .status-pending { background:#FCE7C8; color:#96521E; }
+  .status-done { background:#EEF0D2; color:#5E661A; }
+</style>
+</head>
+<body class="antialiased min-h-screen">
+
+<!-- Login gate -->
+<div id="loginView" class="min-h-screen flex items-center justify-center px-6">
+  <div class="w-full max-w-sm bg-white rounded-3xl shadow-xl border border-brand-100 p-8">
+    <p class="text-xs font-bold tracking-[0.2em] text-brand-dark uppercase mb-2">WithUsOn</p>
+    <h1 class="text-xl font-bold text-ink mb-6">관리자 로그인</h1>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-bold text-ink mb-2">비밀번호</label>
+        <input type="password" id="passwordInput" required autocomplete="off"
+          class="field w-full rounded-xl border border-brand-100 bg-white px-4 py-3 text-sm">
+      </div>
+      <p id="loginError" class="hidden text-sm text-red-600">비밀번호가 올바르지 않습니다.</p>
+      <button type="submit" id="loginBtn" class="btn w-full py-3 rounded-xl font-bold text-sm text-white" style="background:#7C8620;">로그인</button>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboardView" class="hidden min-h-screen">
+  <header class="bg-white border-b border-brand-100 px-6 py-4 flex items-center justify-between">
+    <div>
+      <p class="text-xs font-bold tracking-[0.2em] text-brand-dark uppercase">WithUsOn</p>
+      <h1 class="text-lg font-bold text-ink">문의 관리</h1>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="refreshBtn" class="btn text-sm font-semibold px-4 py-2 rounded-full border border-brand-100">새로고침</button>
+      <button id="logoutBtn" class="btn text-sm font-semibold px-4 py-2 rounded-full border border-brand-100 text-red-600">로그아웃</button>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Stats -->
+    <div class="grid sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-white rounded-2xl border border-brand-100 p-5">
+        <p class="text-xs font-semibold text-inksoft mb-1">총 신청</p>
+        <p id="statTotal" class="text-2xl font-extrabold text-ink">-</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-brand-100 p-5">
+        <p class="text-xs font-semibold text-inksoft mb-1">대기중</p>
+        <p id="statPending" class="text-2xl font-extrabold text-ink">-</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-brand-100 p-5">
+        <p class="text-xs font-semibold text-inksoft mb-1">오늘 신청</p>
+        <p id="statToday" class="text-2xl font-extrabold text-ink">-</p>
+      </div>
+    </div>
+
+    <div id="loadingMsg" class="text-sm text-inksoft">불러오는 중...</div>
+    <div id="errorMsg" class="hidden text-sm text-red-600 mb-4"></div>
+
+    <!-- Table -->
+    <div class="bg-white rounded-2xl border border-brand-100 overflow-x-auto">
+      <table class="w-full text-sm min-w-[820px]">
+        <thead>
+          <tr class="text-left text-xs text-inksoft border-b border-brand-100">
+            <th class="px-4 py-3 font-semibold">이름</th>
+            <th class="px-4 py-3 font-semibold">연락처</th>
+            <th class="px-4 py-3 font-semibold">이메일</th>
+            <th class="px-4 py-3 font-semibold">유형</th>
+            <th class="px-4 py-3 font-semibold">접수일</th>
+            <th class="px-4 py-3 font-semibold">상태</th>
+            <th class="px-4 py-3 font-semibold">상세</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Detail modal -->
+<div id="detailModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-6" style="background:rgba(26,34,18,0.5);">
+  <div class="bg-white rounded-3xl max-w-lg w-full p-7 max-h-[80vh] overflow-y-auto">
+    <div class="flex items-start justify-between mb-5">
+      <h2 class="text-lg font-bold text-ink">문의 상세</h2>
+      <button id="closeModalBtn" class="text-inksoft text-xl leading-none">&times;</button>
+    </div>
+    <div id="detailContent" class="space-y-3 text-sm"></div>
+  </div>
+</div>
+
+<script>
+  var INQUIRY_LABELS = { education: '교육 문의', instructor: '강사 등록 문의', partnership: '제휴 문의', etc: '기타 문의' };
+  var SESSION_KEY = 'wus_admin_session';
+  var SESSION_MAX_AGE = 1000 * 60 * 60 * 2; // 2 hours
+
+  var loginView = document.getElementById('loginView');
+  var dashboardView = document.getElementById('dashboardView');
+  var loginForm = document.getElementById('loginForm');
+  var passwordInput = document.getElementById('passwordInput');
+  var loginError = document.getElementById('loginError');
+  var loginBtn = document.getElementById('loginBtn');
+
+  function getSession() {
+    try {
+      var raw = sessionStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      if (Date.now() - parsed.time > SESSION_MAX_AGE) {
+        sessionStorage.removeItem(SESSION_KEY);
+        return null;
+      }
+      return parsed.password;
+    } catch (e) { return null; }
+  }
+
+  function setSession(password) {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ password: password, time: Date.now() }));
+  }
+
+  function clearSession() {
+    sessionStorage.removeItem(SESSION_KEY);
+  }
+
+  function showLogin() {
+    loginView.classList.remove('hidden');
+    dashboardView.classList.add('hidden');
+  }
+
+  function showDashboard() {
+    loginView.classList.add('hidden');
+    dashboardView.classList.remove('hidden');
+    loadConsultations();
+  }
+
+  async function apiRequest(path, options) {
+    options = options || {};
+    var password = getSession();
+    options.headers = Object.assign({}, options.headers, { 'x-admin-password': password || '' });
+    var res = await fetch(path, options);
+    if (res.status === 401) {
+      clearSession();
+      showLogin();
+      throw new Error('세션이 만료되었습니다. 다시 로그인해주세요.');
+    }
+    return res;
+  }
+
+  loginForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    loginBtn.disabled = true;
+    loginError.classList.add('hidden');
+    var pw = passwordInput.value;
+    try {
+      var res = await fetch('/api/admin', { headers: { 'x-admin-password': pw } });
+      if (res.status === 401) {
+        loginError.classList.remove('hidden');
+        loginBtn.disabled = false;
+        return;
+      }
+      setSession(pw);
+      passwordInput.value = '';
+      showDashboard();
+    } catch (err) {
+      loginError.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+      loginError.classList.remove('hidden');
+    }
+    loginBtn.disabled = false;
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    clearSession();
+    showLogin();
+  });
+  document.getElementById('refreshBtn').addEventListener('click', loadConsultations);
+
+  var allRows = [];
+
+  async function loadConsultations() {
+    var loadingMsg = document.getElementById('loadingMsg');
+    var errorMsg = document.getElementById('errorMsg');
+    var tableBody = document.getElementById('tableBody');
+    loadingMsg.classList.remove('hidden');
+    errorMsg.classList.add('hidden');
+    try {
+      var res = await apiRequest('/api/admin');
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || '불러오기 실패');
+      allRows = data;
+      renderStats(data);
+      renderTable(data);
+    } catch (err) {
+      errorMsg.textContent = err.message;
+      errorMsg.classList.remove('hidden');
+    }
+    loadingMsg.classList.add('hidden');
+  }
+
+  function renderStats(rows) {
+    document.getElementById('statTotal').textContent = rows.length;
+    document.getElementById('statPending').textContent = rows.filter(function (r) { return r.status === 'pending'; }).length;
+    var todayStr = new Date().toDateString();
+    document.getElementById('statToday').textContent = rows.filter(function (r) {
+      return new Date(r.created_at).toDateString() === todayStr;
+    }).length;
+  }
+
+  function formatDate(iso) {
+    var d = new Date(iso);
+    return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0')
+      + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+
+  function renderTable(rows) {
+    var tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
+    rows.forEach(function (row) {
+      var tr = document.createElement('tr');
+      tr.className = 'border-b border-brand-50 last:border-0';
+      var statusClass = row.status === 'done' ? 'status-done' : 'status-pending';
+      var statusLabel = row.status === 'done' ? '완료' : '대기중';
+      tr.innerHTML =
+        '<td class="px-4 py-3 font-semibold">' + escapeHtml(row.name) + '</td>' +
+        '<td class="px-4 py-3">' + escapeHtml(row.phone) + '</td>' +
+        '<td class="px-4 py-3">' + escapeHtml(row.email) + '</td>' +
+        '<td class="px-4 py-3">' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</td>' +
+        '<td class="px-4 py-3 text-inksoft">' + formatDate(row.created_at) + '</td>' +
+        '<td class="px-4 py-3"><button data-id="' + row.id + '" data-status="' + row.status + '" class="toggle-status-btn px-3 py-1 rounded-full text-xs font-bold ' + statusClass + '">' + statusLabel + '</button></td>' +
+        '<td class="px-4 py-3"><button data-id="' + row.id + '" class="view-detail-btn text-brand-dark font-semibold text-xs">보기</button></td>';
+      tableBody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.toggle-status-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        var id = btn.getAttribute('data-id');
+        var current = btn.getAttribute('data-status');
+        var next = current === 'done' ? 'pending' : 'done';
+        btn.disabled = true;
+        try {
+          var res = await apiRequest('/api/admin', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, status: next }),
+          });
+          if (!res.ok) throw new Error('상태 변경 실패');
+          loadConsultations();
+        } catch (err) {
+          alert(err.message);
+        }
+        btn.disabled = false;
+      });
+    });
+
+    document.querySelectorAll('.view-detail-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-id');
+        var row = allRows.find(function (r) { return String(r.id) === String(id); });
+        if (row) showDetail(row);
+      });
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var detailModal = document.getElementById('detailModal');
+  function showDetail(row) {
+    document.getElementById('detailContent').innerHTML =
+      '<p><span class="font-bold">이름</span> ' + escapeHtml(row.name) + '</p>' +
+      '<p><span class="font-bold">연락처</span> ' + escapeHtml(row.phone) + '</p>' +
+      '<p><span class="font-bold">이메일</span> ' + escapeHtml(row.email) + '</p>' +
+      '<p><span class="font-bold">문의 유형</span> ' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</p>' +
+      '<p><span class="font-bold">접수일</span> ' + formatDate(row.created_at) + '</p>' +
+      '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>';
+    detailModal.classList.remove('hidden');
+  }
+  document.getElementById('closeModalBtn').addEventListener('click', function () { detailModal.classList.add('hidden'); });
+  detailModal.addEventListener('click', function (e) { if (e.target === detailModal) detailModal.classList.add('hidden'); });
+
+  // Init
+  if (getSession()) {
+    showDashboard();
+  } else {
+    showLogin();
+  }
+</script>
+
+</body>
+</html>
