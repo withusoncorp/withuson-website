@@ -682,12 +682,20 @@
     submitBtn.textContent = '전송 중...';
     notice.classList.add('hidden');
 
-    supabaseClient.from('consultations').insert([{
+    var payload = {
       name: form.name.value.trim(),
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
-      inquiry_type: form.inquiryType.value,
+      inquiryType: form.inquiryType.value,
       message: form.message.value.trim()
+    };
+
+    supabaseClient.from('consultations').insert([{
+      name: payload.name,
+      phone: payload.phone,
+      email: payload.email,
+      inquiry_type: payload.inquiryType,
+      message: payload.message
     }]).then(function (result) {
       submitBtn.disabled = false;
       submitBtn.textContent = '문의 보내기';
@@ -703,6 +711,13 @@
       notice.classList.add('text-brand-darker');
       notice.classList.remove('hidden');
       form.reset();
+
+      // Best-effort admin email notification (does not block success UI)
+      fetch('/api/send-notification', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function (err) { console.warn('알림 이메일 발송 실패:', err); });
     });
   });
 </script>
