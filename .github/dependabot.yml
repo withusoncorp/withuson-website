@@ -1,0 +1,8 @@
+version: 2
+updates:
+  # GitHub Actions 워크플로우 버전을 자동으로 감시/업데이트합니다.
+  # (현재는 워크플로우가 없지만, 나중에 .github/workflows/*.yml 을 추가하면 바로 적용됩니다)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
