@@ -74,7 +74,8 @@ ink: '#26301C', inksoft: '#5C6653', inkfaint: '#8B9280', canvas: '#FBFAF3',
 ├── index.html              # 메인 페이지 (전체 마크업+스타일+스크립트 단일 파일)
 ├── vercel.json              # 보안 헤더 설정
 ├── robots.txt / sitemap.xml # SEO
-├── og-image.png, favicon-32.png, apple-touch-icon.png, icon-512.png
+├── png/                      # 파비콘, OG 이미지 등 유틸리티 png 모음
+│   └── og-image.png, favicon-32.png, apple-touch-icon.png, icon-512.png
 ├── brand_logo/
 │   ├── logo.png             # 헤더용 (가로형, 다크그린)
 │   └── logo_footer.png      # 푸터용 (가로형, 크림색 - 다크 배경용)
