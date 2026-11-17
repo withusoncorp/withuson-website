@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>찾아가는 공연 | 위더스온</title>
+<meta name="description" content="위더스온의 찾아가는 공연 사업을 소개합니다. 공연이 필요한 현장으로 직접 찾아갑니다.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.withusoncorp.co.kr/performance">
+<meta name="google-site-verification" content="GKjNCu4vn4049zaliaGH0-SmAjflBBpHSfyYZj5mBDk" />
+<meta name="naver-site-verification" content="e5b093988f519e265c11634157613cab228c9475" />
+<meta name="naver-site-verification" content="dd202d8fa2f3f13dc7faaf9bdc1d785e055be35d" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/png/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/png/icon-512.png">
+<link rel="apple-touch-icon" href="/png/apple-touch-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WithUsOn 위더스온">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://www.withusoncorp.co.kr/performance">
+<meta property="og:title" content="찾아가는 공연 | 위더스온">
+<meta property="og:description" content="위더스온의 찾아가는 공연 사업을 소개합니다. 공연이 필요한 현장으로 직접 찾아갑니다.">
+<meta property="og:image" content="https://www.withusoncorp.co.kr/png/og-image.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="찾아가는 공연 | 위더스온">
+<meta name="twitter:description" content="위더스온의 찾아가는 공연 사업을 소개합니다. 공연이 필요한 현장으로 직접 찾아갑니다.">
+<meta name="twitter:image" content="https://www.withusoncorp.co.kr/png/og-image.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "위더스온",
+      "item": "https://www.withusoncorp.co.kr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "찾아가는 공연",
+      "item": "https://www.withusoncorp.co.kr/performance"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/assets/js/tailwind-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="antialiased" data-page="performance" data-accent="warm">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:px-4 focus:py-2 focus:rounded-full focus:bg-white focus:text-ink focus:shadow-brand-md">본문 바로가기</a>
+
+<!-- ===== Header (assets/js/layout.js 가 site-config.js 메뉴로 렌더링) ===== -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 glass-strong h-16 md:h-20"></header>
+
+<main id="main">
+
+<!-- ① Hero -->
+<section class="relative bg-canvas pt-32 pb-20 md:pt-44 md:pb-28 px-6 overflow-hidden" data-admin-group="히어로">
+  <div class="blob w-[420px] h-[420px] -top-24 -left-24 bg-warm-1"></div>
+  <div class="blob w-[380px] h-[380px] -bottom-40 right-0 bg-warm-2 opacity-40"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 md:gap-10">
+    <div class="flex-1 w-full">
+      <p class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs md:text-sm font-bold accent-text tracking-wide mb-7" data-ck="performance.hero_eyebrow">찾아가는 공연</p>
+      <h1 class="reveal reveal-delay-1 text-[1.75rem] sm:text-4xl lg:text-5xl leading-tight font-extrabold text-ink tracking-tight">
+        <span class="block" data-ck="performance.hero_headline">공연이 필요한 곳으로</span>
+        <span class="block mt-2 md:mt-3 accent-text" data-ck="performance.hero_headline_highlight">직접 찾아갑니다.</span>
+      </h1>
+      <p class="reveal reveal-delay-2 mt-8 md:mt-10 text-sm sm:text-base lg:text-lg text-inksoft leading-relaxed max-w-xl" data-ck="performance.hero_subcopy">[작성 예정]</p>
+      <div class="reveal reveal-delay-3 mt-10 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/#contact" class="btn btn-primary px-7 py-3.5 text-[15px]"><span data-ck="performance.hero_cta_primary">공연 문의하기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#overview" class="btn btn-ghost px-7 py-3.5 text-[15px]" data-ck="performance.hero_cta_secondary">자세히 살펴보기</a>
+      </div>
+    </div>
+
+    <!-- 대표 오브제 (관리자에서 대표 이미지를 올리면 이미지로 교체됨) -->
+    <div class="reveal reveal-delay-2 flex-1 w-full flex justify-center md:justify-end">
+      <div class="img-slot w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem] rounded-[2.5rem]" data-img-slot>
+        <img data-img="performance.hero_image" data-img-ratio="1:1" data-img-size="1200×1200" alt="찾아가는 공연 대표 이미지" class="rounded-[2.5rem] shadow-brand-lg" hidden>
+        <div data-img-fallback class="absolute inset-0">
+          <div class="absolute inset-0 rounded-full blur-3xl opacity-40" style="background: radial-gradient(circle, #EFA35C, transparent 70%);"></div><svg class="absolute inset-0 w-full h-full spin-slow" viewBox="0 0 400 400" fill="none" aria-hidden="true"><circle cx="200" cy="200" r="182" stroke="#EFA35C" stroke-width="1.5" stroke-dasharray="3 9" opacity="0.5" stroke-linecap="round"/></svg><svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400" aria-hidden="true"><g stroke="#96521E" stroke-width="1" stroke-opacity="0.2" stroke-linejoin="round"><polygon points="70,293 200,358 200,378 70,313" fill="#C97835" fill-opacity="0.75"/><polygon points="200,358 330,293 330,313 200,378" fill="#EFA35C" fill-opacity="0.8"/><polygon points="200,228 330,293 200,358 70,293" fill="#FDF4E6" fill-opacity="0.95"/></g><path d="M318 120 a40 40 0 0 1 0 64" stroke="#EFA35C" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/><path d="M336 104 a62 62 0 0 1 0 96" stroke="#F4C978" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/><path d="M82 120 a40 40 0 0 0 0 64" stroke="#EFA35C" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/><path d="M64 104 a62 62 0 0 0 0 96" stroke="#F4C978" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/></svg><div class="absolute rounded-full pulse-ring" style="width:56%; height:56%; top:10%; left:22%; border:2px solid rgba(239,163,92,0.55);"></div><div class="absolute rounded-full pulse-ring delay" style="width:56%; height:56%; top:10%; left:22%; border:2px solid rgba(244,201,120,0.6);"></div><div class="absolute float-slow rounded-full orb-warm" style="width:36%; height:36%; top:20%; left:32%;"></div><div class="absolute float-fast rounded-full orb-main" style="width:11%; height:11%; top:6%; right:10%;"></div><div class="absolute float-med rounded-full orb-cream" style="width:9%; height:9%; top:16%; left:8%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② 사업 개요 -->
+<section id="overview" class="relative bg-white px-6 py-24 md:py-36" data-admin-group="사업 개요">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <div class="reveal">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="performance.overview_eyebrow">Overview</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight leading-snug" data-ck="performance.overview_title">[작성 예정]</h2>
+      <p class="mt-6 md:mt-8 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="performance.overview_desc">[작성 예정]</p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="img-slot aspect-[4/3] rounded-[2rem] shadow-brand-md" data-img-slot>
+        <img data-img="performance.overview_image" data-img-ratio="4:3" data-img-size="1600×1200" alt="공연 현장 사진" class="rounded-[2rem]" loading="lazy" hidden>
+        <div data-img-fallback class="absolute inset-0 rounded-[2rem] overflow-hidden" style="background: linear-gradient(135deg, var(--accent-softer), var(--accent-soft));">
+          <svg viewBox="0 0 400 300" class="w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <pattern id="ovGrid" width="64" height="37" patternUnits="userSpaceOnUse"><path d="M0 18.5 L32 0 L64 18.5 L32 37 Z" fill="none" style="stroke: var(--accent)" stroke-width="1"/></pattern>
+              <radialGradient id="ovFade" cx="55%" cy="45%" r="65%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient>
+              <mask id="ovMask"><rect width="400" height="300" fill="url(#ovFade)"/></mask>
+            </defs>
+            <rect width="400" height="300" fill="url(#ovGrid)" opacity="0.5" mask="url(#ovMask)"/>
+            <g stroke-width="1" stroke-linejoin="round" style="stroke: var(--accent-darker)" stroke-opacity="0.25">
+              <polygon points="150,140 220,175 220,230 150,195" style="fill: var(--accent)" fill-opacity="0.3"/>
+              <polygon points="220,175 290,140 290,195 220,230" style="fill: var(--accent)" fill-opacity="0.45"/>
+              <polygon points="220,105 290,140 220,175 150,140" fill="#FFFFFF" fill-opacity="0.75"/>
+            </g>
+            <g class="float-slow" stroke-width="1" stroke-linejoin="round" style="stroke: var(--accent-darker)" stroke-opacity="0.3">
+              <polygon points="168,74 206,93 206,125 168,106" style="fill: var(--accent-dark)" fill-opacity="0.85"/>
+              <polygon points="206,93 244,74 244,106 206,125" style="fill: var(--accent)" fill-opacity="0.9"/>
+              <polygon points="206,55 244,74 206,93 168,74" fill="#FFFFFF" fill-opacity="0.95"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 핵심 특징 -->
+<section id="features" class="relative px-6 py-24 md:py-36" style="background: linear-gradient(180deg, #FFFFFF 0%, var(--accent-softer) 100%);" data-admin-group="핵심 특징">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="performance.features_eyebrow">Key Features</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="performance.features_headline">찾아가는 공연의 특징</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+      <div class="reveal feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="performance.feature1_title">직접 찾아가는 공연</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="performance.feature1_desc">공연이 필요한 현장으로 직접 찾아갑니다.</p>
+      </div>
+      <div class="reveal reveal-delay-1 feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="performance.feature2_title">[작성 예정]</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="performance.feature2_desc">[작성 예정]</p>
+      </div>
+      <div class="reveal reveal-delay-2 feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="performance.feature3_title">[작성 예정]</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="performance.feature3_desc">[작성 예정]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 진행 과정 (도식) -->
+<section id="process" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="진행 과정">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal text-center mb-14 md:mb-20">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="performance.process_eyebrow">Process</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="performance.process_headline">공연 진행 과정</h2>
+    </div>
+    <ol class="grid md:grid-cols-3 gap-10 md:gap-6">
+      <li class="proc-step reveal flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">01</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="performance.process_step1_title">문의</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="performance.process_step1_desc">[작성 예정]</p>
+        </div>
+      </li>
+      <li class="proc-step reveal reveal-delay-1 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">02</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="performance.process_step2_title">기획</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="performance.process_step2_desc">[작성 예정]</p>
+        </div>
+      </li>
+      <li class="proc-step reveal reveal-delay-2 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">03</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="performance.process_step3_title">공연</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="performance.process_step3_desc">[작성 예정]</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ⑤ 대상·분야 -->
+<section id="fields" class="relative bg-white px-6 py-24 md:py-32" data-admin-group="대상·분야">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="reveal">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="performance.fields_eyebrow">Fields</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="performance.fields_headline">공연 대상·분야</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="performance.fields_subcopy">[작성 예정]</p>
+    </div>
+    <ul class="reveal reveal-delay-1 mt-10 md:mt-12 flex flex-wrap justify-center gap-3">
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="performance.fields_tag1">[작성 예정]</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ⑥ 관련 자료 (갤러리: 관리자 '관련 자료' 탭에서 업로드) -->
+<section id="resources" class="relative px-6 py-24 md:py-36" style="background: linear-gradient(180deg, #FFFFFF 0%, var(--accent-softer) 100%);" data-admin-group="관련 자료">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="performance.gallery_eyebrow">Resources</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="performance.gallery_headline">관련 자료</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="performance.gallery_subcopy">공연 현장의 모습을 사진으로 만나보세요.</p>
+    </div>
+    <div data-gallery="performance" class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" hidden></div>
+    <div data-gallery-empty hidden class="glass rounded-3xl px-6 py-12 md:py-14 text-center max-w-xl mx-auto">
+      <div class="w-12 h-12 mx-auto mb-4 rounded-2xl accent-soft-bg flex items-center justify-center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-text" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </div>
+      <p class="text-[15px] font-semibold text-ink" data-ck="performance.gallery_empty">관련 자료를 준비하고 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ CTA -->
+<section id="cta" class="relative bg-forest-darker px-6 py-24 md:py-32 overflow-hidden" data-admin-group="문의 유도">
+  <div class="blob w-[480px] h-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.14]" style="background: var(--accent);"></div>
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+    <h2 class="reveal text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight" data-ck="performance.cta_headline">공연이 필요한 현장이 있으신가요?</h2>
+    <p class="reveal reveal-delay-1 mt-5 text-sm md:text-base text-white/65 leading-relaxed" data-ck="performance.cta_subcopy">문의를 남겨주시면 빠른 시일 내에 연락드리겠습니다.</p>
+    <div class="reveal reveal-delay-2 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/#contact" class="btn btn-primary px-7 py-3.5 text-[15px]"><span data-ck="performance.cta_button">공연 문의하기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer (assets/js/layout.js 가 렌더링) ===== -->
+<footer id="site-footer"></footer>
+
+<script src="/assets/js/site-config.js"></script>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/content.js"></script>
+<script src="/assets/js/site.js"></script>
+<script src="/assets/js/gallery.js"></script>
+</body>
+</html>

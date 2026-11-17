@@ -774,3 +774,62 @@ Phase 5: 관리자 페이지 (선택) ──────────────
 
 ✅ 완료!
 ```
+
+---
+
+# 🧭 하위 메뉴 추가 방법 (위더스온 멀티페이지 사이트)
+
+> 사용자가 "교육 프로그램에 '프로그램 목록', '강사 소개' 하위 메뉴 만들어줘"처럼 말하면 **아래 절차만 따라** 바로 작업한다. 인터뷰(Phase 1)는 생략한다.
+
+## 사이트 구조 한눈에 보기
+
+| 메뉴 | 파일 | URL |
+|---|---|---|
+| About | `index.html` | `/` |
+| 교육 프로그램 | `education.html` | `/education` |
+| 찾아가는 공연 | `performance.html` | `/performance` |
+| 기관 탐색 서비스 | `platform.html` | `/platform` |
+| 온라인 언론사 | `press.html` | `/press` |
+
+- 메뉴 구조의 단일 소스: `assets/js/site-config.js` (`window.SITE_NAV`)
+- 헤더·드롭다운·모바일 메뉴·푸터 렌더링: `assets/js/layout.js` (페이지마다 복붙 금지)
+- 공통 스타일 `assets/css/site.css`, Tailwind 설정 `assets/js/tailwind-config.js`
+- 문구/이미지 로딩 `assets/js/content.js`, 갤러리 `assets/js/gallery.js`, reveal `assets/js/site.js`
+- `vercel.json`의 `cleanUrls: true` → `education.html`이 `/education`으로 열림
+
+## 절차
+
+1. **`assets/js/site-config.js`** 의 해당 메뉴 `children`에 항목 추가
+   ```js
+   { label: '교육 프로그램', href: '/education', children: [
+       { label: '프로그램 목록', href: '/education#programs' },      // 같은 페이지 섹션
+       { label: '강사 소개',   href: '/education-instructors' },     // 별도 페이지
+   ]},
+   ```
+   - `children`이 비어 있으면 화살표·드롭다운이 없고, 항목을 넣으면 데스크톱 드롭다운 + 모바일 아코디언이 **자동 생성**된다. layout.js는 수정하지 않는다.
+2. **하위 메뉴가 같은 페이지 섹션이면** → 해당 페이지에 `id`가 있는 `<section id="programs" data-admin-group="프로그램 목록">` 추가.
+   (`scroll-margin-top`은 site.css에서 `section[id]`에 자동 적용되어 고정 헤더에 가리지 않음)
+   **별도 페이지이면** → 같은 사업의 페이지(예: `education.html`)를 복제해 `education-xxx.html` 생성 후:
+   - `<title>`, `meta description`, `canonical`, `og:url`, `og:title`/`og:description`, `twitter:*`, JSON-LD 브레드크럼을 새 페이지 기준으로 수정
+   - `<body data-page="education-xxx" data-accent="brand|warm|mix|forest">` 수정 (data-page = 키 접두어, 갤러리 페이지 이름)
+   - `sitemap.xml`에 URL 추가
+3. **새 텍스트에는 `data-ck`, 새 이미지 자리에는 `data-img`** 부여 — 네이밍 규칙 `{페이지}.{섹션}_{항목}`
+   - 예: `education.programs_headline`, `education.programs_item1_title`, `education-instructors.hero_image`
+   - 이미지 슬롯 마크업:
+     ```html
+     <div class="img-slot aspect-[4/3] rounded-[2rem]" data-img-slot>
+       <img data-img="education.programs_image" data-img-ratio="4:3" data-img-size="1600×1200" alt="설명" loading="lazy" hidden>
+       <div data-img-fallback class="absolute inset-0">…기본 오브제…</div>
+     </div>
+     ```
+   - 갤러리: `<div data-gallery="{페이지}"></div>` + `<div data-gallery-empty hidden>…</div>`
+   - **기존 `data-ck` 키 이름은 절대 바꾸지 않는다** (DB에 수정 문구가 저장되어 있음)
+   - 관리자가 수정할 문구에는 `whitespace-nowrap` 금지
+4. **관리자 확인**: `/wuoadmin` → 문구 관리. 관리자 페이지는 `SITE_NAV`의 페이지를 직접 읽어 `data-ck`/`data-img`/`data-gallery`를 **자동으로 목록화**한다. 새 키가 해당 페이지 탭·섹션(`data-admin-group`)에 보이는지 확인. 라벨은 키에서 자동 생성되며, 특별한 이름이 필요하면 `wuoadmin/index.html`의 `LABELS`에 추가.
+5. **스크린샷 검증**: 360 / 768 / 1280px에서 데스크톱 드롭다운(hover·키보드·Esc), 모바일 햄버거·아코디언, 앵커 위치(헤더에 가리지 않음), 가로 스크롤 없음, 콘솔 에러 없음 확인.
+
+## 관련 서버·DB 구조 (참고)
+
+- 문구·이미지 URL: `site_content`(key/value) — 이미지 대체 텍스트는 `{키}_alt`
+- 관련 자료: `gallery_items` 테이블, 이미지는 Supabase Storage `site-media` 버킷 (`pages/{페이지}/…`, `gallery/{페이지}/…`)
+- 쓰기 경로: 관리자 페이지 → `/api/content` · `/api/media` · `/api/gallery` (서버에서 `ADMIN_PASSWORD` 검증 후 service_role 키 사용). anon 키로는 쓰기 불가 (`supabase/upgrade.sql`)

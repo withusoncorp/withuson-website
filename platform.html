@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기관 탐색 서비스 훌터(Hoolter) | 위더스온</title>
+<meta name="description" content="훌터(Hoolter)는 상담센터·발달센터·정신건강 전문가를 연결하는 플랫폼입니다. 고민을 훌훌 털어낼 전문가와 연결되는 곳.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.withusoncorp.co.kr/platform">
+<meta name="google-site-verification" content="GKjNCu4vn4049zaliaGH0-SmAjflBBpHSfyYZj5mBDk" />
+<meta name="naver-site-verification" content="e5b093988f519e265c11634157613cab228c9475" />
+<meta name="naver-site-verification" content="dd202d8fa2f3f13dc7faaf9bdc1d785e055be35d" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/png/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/png/icon-512.png">
+<link rel="apple-touch-icon" href="/png/apple-touch-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WithUsOn 위더스온">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://www.withusoncorp.co.kr/platform">
+<meta property="og:title" content="기관 탐색 서비스 훌터(Hoolter) | 위더스온">
+<meta property="og:description" content="훌터(Hoolter)는 상담센터·발달센터·정신건강 전문가를 연결하는 플랫폼입니다. 고민을 훌훌 털어낼 전문가와 연결되는 곳.">
+<meta property="og:image" content="https://www.withusoncorp.co.kr/png/og-image.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="기관 탐색 서비스 훌터(Hoolter) | 위더스온">
+<meta name="twitter:description" content="훌터(Hoolter)는 상담센터·발달센터·정신건강 전문가를 연결하는 플랫폼입니다. 고민을 훌훌 털어낼 전문가와 연결되는 곳.">
+<meta name="twitter:image" content="https://www.withusoncorp.co.kr/png/og-image.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "위더스온",
+      "item": "https://www.withusoncorp.co.kr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "기관 탐색 서비스",
+      "item": "https://www.withusoncorp.co.kr/platform"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/assets/js/tailwind-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="antialiased" data-page="platform" data-accent="mix">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:px-4 focus:py-2 focus:rounded-full focus:bg-white focus:text-ink focus:shadow-brand-md">본문 바로가기</a>
+
+<!-- ===== Header (assets/js/layout.js 가 site-config.js 메뉴로 렌더링) ===== -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 glass-strong h-16 md:h-20"></header>
+
+<main id="main">
+
+<!-- ① Hero -->
+<section class="relative bg-canvas pt-32 pb-20 md:pt-44 md:pb-28 px-6 overflow-hidden" data-admin-group="히어로">
+  <div class="blob w-[420px] h-[420px] -top-24 -left-24 bg-brand-light"></div>
+  <div class="blob w-[380px] h-[380px] -bottom-40 right-0 bg-warm-1 opacity-40"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 md:gap-10">
+    <div class="flex-1 w-full">
+      <p class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs md:text-sm font-bold accent-text tracking-wide mb-7" data-ck="platform.hero_eyebrow">기관 탐색 서비스 · Hoolter</p>
+      <h1 class="reveal reveal-delay-1 text-[1.75rem] sm:text-4xl lg:text-5xl leading-tight font-extrabold text-ink tracking-tight">
+        <span class="block" data-ck="platform.hero_headline">고민을 훌훌 털어낼</span>
+        <span class="block mt-2 md:mt-3 accent-text" data-ck="platform.hero_headline_highlight">전문가와 연결되는 곳</span>
+      </h1>
+      <p class="reveal reveal-delay-2 mt-8 md:mt-10 text-sm sm:text-base lg:text-lg text-inksoft leading-relaxed max-w-xl" data-ck="platform.hero_subcopy">훌터(Hoolter)는 상담·발달센터·정신건강 전문가를<br>연결하는 플랫폼입니다.</p>
+      <div class="reveal reveal-delay-3 mt-10 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="/#contact" class="btn btn-primary px-7 py-3.5 text-[15px]"><span data-ck="platform.hero_cta_primary">문의하기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#overview" class="btn btn-ghost px-7 py-3.5 text-[15px]" data-ck="platform.hero_cta_secondary">자세히 살펴보기</a>
+      </div>
+    </div>
+
+    <!-- 대표 오브제 (관리자에서 대표 이미지를 올리면 이미지로 교체됨) -->
+    <div class="reveal reveal-delay-2 flex-1 w-full flex justify-center md:justify-end">
+      <div class="img-slot w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem] rounded-[2.5rem]" data-img-slot>
+        <img data-img="platform.hero_image" data-img-ratio="1:1" data-img-size="1200×1200" alt="훌터 서비스 대표 이미지" class="rounded-[2.5rem] shadow-brand-lg" hidden>
+        <div data-img-fallback class="absolute inset-0">
+          <div class="absolute inset-0 rounded-full blur-3xl opacity-40" style="background: radial-gradient(circle, #EFA35C, transparent 70%);"></div><svg class="absolute inset-0 w-full h-full spin-slow" viewBox="0 0 400 400" fill="none" aria-hidden="true"><circle cx="200" cy="200" r="182" stroke="#A2AD24" stroke-width="1.5" stroke-dasharray="3 9" opacity="0.5" stroke-linecap="round"/></svg><div class="absolute inset-0 float-slow"><svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" aria-hidden="true"><line x1="50" y1="50" x2="50" y2="12" stroke="#C97835" stroke-width="0.5" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.7"/><line x1="50" y1="50" x2="86" y2="38" stroke="#C97835" stroke-width="0.5" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.7"/><line x1="50" y1="50" x2="72" y2="82" stroke="#C97835" stroke-width="0.5" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.7"/><line x1="50" y1="50" x2="28" y2="82" stroke="#C97835" stroke-width="0.5" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.7"/><line x1="50" y1="50" x2="14" y2="38" stroke="#C97835" stroke-width="0.5" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.7"/></svg><div class="absolute rounded-full orb-main" style="width:15%; height:15%; left:42.5%; top:4.5%;"></div><div class="absolute rounded-full orb-forest" style="width:13%; height:13%; left:79.5%; top:31.5%;"></div><div class="absolute rounded-full orb-light" style="width:14%; height:14%; left:65%; top:75%;"></div><div class="absolute rounded-full orb-cream" style="width:13%; height:13%; left:21.5%; top:75.5%;"></div><div class="absolute rounded-full orb-main" style="width:12%; height:12%; left:8%; top:32%;"></div><div class="absolute rounded-full pulse-ring" style="width:44%; height:44%; top:28%; left:28%; border:2px solid rgba(239,163,92,0.5);"></div><div class="absolute rounded-full pulse-ring delay" style="width:44%; height:44%; top:28%; left:28%; border:2px solid rgba(162,173,36,0.45);"></div><div class="absolute rounded-full orb-warm" style="width:30%; height:30%; top:35%; left:35%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② 사업 개요 -->
+<section id="overview" class="relative bg-white px-6 py-24 md:py-36" data-admin-group="사업 개요">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <div class="reveal">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="platform.overview_eyebrow">Overview</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight leading-snug" data-ck="platform.overview_title">나에게 딱 맞는 전문가를<br>찾는 가장 확실한 방법</h2>
+      <p class="mt-6 md:mt-8 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="platform.overview_desc">발달센터, 심리상담센터, 정신건강의학과 등의 전문 도움이 필요한 이들의 상황을 분석해, 검증된 맞춤형 전문가를 연결하는 B2B 및 B2C 매칭 서비스를 제공합니다.<br><br>다양한 바우처 혜택과 맞춤형 조건 필터링으로, 누구나 안심하고 전문가를 만날 수 있는 평등한 기회를 제공합니다.</p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="img-slot aspect-[4/3] rounded-[2rem] shadow-brand-md" data-img-slot>
+        <img data-img="platform.overview_image" data-img-ratio="4:3" data-img-size="1600×1200" alt="훌터 서비스 화면" class="rounded-[2rem]" loading="lazy" hidden>
+        <div data-img-fallback class="absolute inset-0 rounded-[2rem] overflow-hidden" style="background: linear-gradient(135deg, var(--accent-softer), var(--accent-soft));">
+          <svg viewBox="0 0 400 300" class="w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <pattern id="ovGrid" width="64" height="37" patternUnits="userSpaceOnUse"><path d="M0 18.5 L32 0 L64 18.5 L32 37 Z" fill="none" style="stroke: var(--accent)" stroke-width="1"/></pattern>
+              <radialGradient id="ovFade" cx="55%" cy="45%" r="65%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="black"/></radialGradient>
+              <mask id="ovMask"><rect width="400" height="300" fill="url(#ovFade)"/></mask>
+            </defs>
+            <rect width="400" height="300" fill="url(#ovGrid)" opacity="0.5" mask="url(#ovMask)"/>
+            <g stroke-width="1" stroke-linejoin="round" style="stroke: var(--accent-darker)" stroke-opacity="0.25">
+              <polygon points="150,140 220,175 220,230 150,195" style="fill: var(--accent)" fill-opacity="0.3"/>
+              <polygon points="220,175 290,140 290,195 220,230" style="fill: var(--accent)" fill-opacity="0.45"/>
+              <polygon points="220,105 290,140 220,175 150,140" fill="#FFFFFF" fill-opacity="0.75"/>
+            </g>
+            <g class="float-slow" stroke-width="1" stroke-linejoin="round" style="stroke: var(--accent-darker)" stroke-opacity="0.3">
+              <polygon points="168,74 206,93 206,125 168,106" style="fill: var(--accent-dark)" fill-opacity="0.85"/>
+              <polygon points="206,93 244,74 244,106 206,125" style="fill: var(--accent)" fill-opacity="0.9"/>
+              <polygon points="206,55 244,74 206,93 168,74" fill="#FFFFFF" fill-opacity="0.95"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 핵심 특징 -->
+<section id="features" class="relative px-6 py-24 md:py-36" style="background: linear-gradient(180deg, #FFFFFF 0%, var(--accent-softer) 100%);" data-admin-group="핵심 특징">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="platform.features_eyebrow">Key Features</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="platform.features_headline">훌터의 특징</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+      <div class="reveal feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="platform.feature1_title">상황 분석 기반 매칭</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="platform.feature1_desc">전문 도움이 필요한 이들의 상황을 분석해 맞춤형 전문가를 연결합니다.</p>
+      </div>
+      <div class="reveal reveal-delay-1 feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="platform.feature2_title">검증된 전문가</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="platform.feature2_desc">발달센터, 심리상담센터, 정신건강의학과 등 검증된 전문가와 연결합니다.</p>
+      </div>
+      <div class="reveal reveal-delay-2 feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="platform.feature3_title">바우처·조건 필터링</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="platform.feature3_desc">다양한 바우처 혜택과 맞춤형 조건 필터링을 제공합니다.</p>
+      </div>
+      <div class="reveal reveal-delay-3 feat-card glass-strong rounded-3xl p-7 md:p-8 shadow-brand-sm h-full">
+        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mb-6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <h3 class="text-lg md:text-xl font-bold text-ink mb-2 tracking-tight" data-ck="platform.feature4_title">B2B · B2C 서비스</h3>
+        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed" data-ck="platform.feature4_desc">B2B 구독과 B2C 매칭 서비스를 함께 제공합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 진행 과정 (도식) -->
+<section id="process" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="진행 과정">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal text-center mb-14 md:mb-20">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="platform.process_eyebrow">Process</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="platform.process_headline">훌터가 연결하는 방법</h2>
+    </div>
+    <ol class="grid md:grid-cols-3 gap-10 md:gap-6">
+      <li class="proc-step reveal flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">01</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="platform.process_step1_title">상황 분석</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="platform.process_step1_desc">도움이 필요한 이의 상황을 분석합니다.</p>
+        </div>
+      </li>
+      <li class="proc-step reveal reveal-delay-1 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">02</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="platform.process_step2_title">조건 필터링</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="platform.process_step2_desc">바우처 혜택과 맞춤형 조건으로 전문가를 찾습니다.</p>
+        </div>
+      </li>
+      <li class="proc-step reveal reveal-delay-2 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
+        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">03</div>
+        <div class="pt-1 md:pt-0">
+          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="platform.process_step3_title">전문가 연결</h3>
+          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="platform.process_step3_desc">검증된 맞춤형 전문가와 연결합니다.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ⑤ 대상·분야 -->
+<section id="fields" class="relative bg-white px-6 py-24 md:py-32" data-admin-group="대상·분야">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="reveal">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="platform.fields_eyebrow">Fields</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="platform.fields_headline">연결 분야</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="platform.fields_subcopy">B2B 및 B2C 매칭 서비스를 제공합니다.</p>
+    </div>
+    <ul class="reveal reveal-delay-1 mt-10 md:mt-12 flex flex-wrap justify-center gap-3">
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="platform.fields_tag1">심리상담센터</li>
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="platform.fields_tag2">발달센터</li>
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="platform.fields_tag3">정신건강의학과</li>
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="platform.fields_tag4">B2B 구독</li>
+        <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="platform.fields_tag5">B2C 매칭</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ⑥ 관련 자료 (갤러리: 관리자 '관련 자료' 탭에서 업로드) -->
+<section id="resources" class="relative px-6 py-24 md:py-36" style="background: linear-gradient(180deg, #FFFFFF 0%, var(--accent-softer) 100%);" data-admin-group="관련 자료">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="platform.gallery_eyebrow">Resources</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="platform.gallery_headline">관련 자료</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="platform.gallery_subcopy">훌터 서비스 관련 자료를 소개합니다.</p>
+    </div>
+    <div data-gallery="platform" class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" hidden></div>
+    <div data-gallery-empty hidden class="glass rounded-3xl px-6 py-12 md:py-14 text-center max-w-xl mx-auto">
+      <div class="w-12 h-12 mx-auto mb-4 rounded-2xl accent-soft-bg flex items-center justify-center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-text" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </div>
+      <p class="text-[15px] font-semibold text-ink" data-ck="platform.gallery_empty">관련 자료를 준비하고 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ CTA -->
+<section id="cta" class="relative bg-forest-darker px-6 py-24 md:py-32 overflow-hidden" data-admin-group="문의 유도">
+  <div class="blob w-[480px] h-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.14]" style="background: var(--accent);"></div>
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+    <h2 class="reveal text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight" data-ck="platform.cta_headline">나에게 맞는 전문가를 찾고 계신가요?</h2>
+    <p class="reveal reveal-delay-1 mt-5 text-sm md:text-base text-white/65 leading-relaxed" data-ck="platform.cta_subcopy">훌터에서 고민을 훌훌 털어낼 전문가를 만나보세요.</p>
+    <div class="reveal reveal-delay-2 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/#contact" class="btn btn-primary px-7 py-3.5 text-[15px]"><span data-ck="platform.cta_button">문의하기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://hoolter.co.kr" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark px-7 py-3.5 text-[15px]"><span data-ck="platform.cta_external">훌터 바로가기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer (assets/js/layout.js 가 렌더링) ===== -->
+<footer id="site-footer"></footer>
+
+<script src="/assets/js/site-config.js"></script>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/content.js"></script>
+<script src="/assets/js/site.js"></script>
+<script src="/assets/js/gallery.js"></script>
+</body>
+</html>
