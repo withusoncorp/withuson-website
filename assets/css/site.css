@@ -382,3 +382,7 @@ body.modal-open { overflow: hidden; }
   .nav-swap > span { transition: none !important; transform: none !important; }
   .pv-modal, .pv-modal .pv-panel { transition: none !important; transform: none !important; }
 }
+
+/* 훌터 '확인하는 정보' 카드: 4장 모두 같은 비율 · 같은 배경 위에 목업을 올린다 */
+.info-shot { background: linear-gradient(160deg, #FBFAF3 0%, var(--accent-softer) 100%); }
+.info-shot.has-image { background: none; }
