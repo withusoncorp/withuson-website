@@ -16,13 +16,15 @@
   var ATTACH_BUCKET = 'inquiry-attachments';
   var CONTACT_EMAIL = 'withusoncorp@withusoncorp.co.kr';
   // 확장자별: 업로드할 때 붙일 Content-Type, 브라우저가 알려주는 MIME 중 허용할 값
-  // (hwp/hwpx 는 브라우저마다 MIME 이 달라 확장자만 본다)
+  // 한글·워드 문서는 확장자만 본다: 브라우저는 PC 에 등록된 값을 그대로 넘기는데,
+  // 한컴오피스가 깔린 PC 는 docx 를 'application/haansoftdocx', hwp 를 'application/haansofthwp' 처럼
+  // 자체 값으로 바꿔 두는 경우가 많다. (업로드는 아래 type 으로 하므로 저장 형식은 항상 일정)
   var FILE_TYPES = {
     hwp:  { type: 'application/x-hwp', mimes: null },
     hwpx: { type: 'application/hwp+zip', mimes: null },
-    doc:  { type: 'application/msword', mimes: ['application/msword'] },
-    docx: { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', mimes: ['application/vnd.openxmlformats-officedocument.wordprocessingml.document'] },
-    pdf:  { type: 'application/pdf', mimes: ['application/pdf'] },
+    doc:  { type: 'application/msword', mimes: null },
+    docx: { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', mimes: null },
+    pdf:  { type: 'application/pdf', mimes: ['application/pdf', 'application/x-pdf'] },
     jpg:  { type: 'image/jpeg', mimes: ['image/jpeg', 'image/pjpeg'] },
     jpeg: { type: 'image/jpeg', mimes: ['image/jpeg', 'image/pjpeg'] },
     png:  { type: 'image/png', mimes: ['image/png'] },
