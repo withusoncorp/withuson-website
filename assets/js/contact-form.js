@@ -144,8 +144,11 @@
     var month = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
     var path = 'inquiries/' + month + '/' + uuid() + '_' + safeName(file.name);
     var type = FILE_TYPES[extOf(file.name)].type;
+    // supabase-js 는 File 을 넘기면 파일 자체의 type 을 쓴다(hwp 는 보통 빈 값 → octet-stream 으로 거부됨)
+    // → 확장자 기준 Content-Type 을 가진 Blob 으로 다시 감싸서 올린다
+    var body = new Blob([file], { type: type });
     return supabaseClient.storage.from(ATTACH_BUCKET)
-      .upload(path, file, { contentType: type, upsert: false })
+      .upload(path, body, { contentType: type, upsert: false })
       .then(function (r) {
         if (r.error) throw r.error;
         return { path: path, name: file.name, size: file.size, type: type };
