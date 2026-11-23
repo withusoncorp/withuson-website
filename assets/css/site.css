@@ -229,6 +229,46 @@ body.menu-open { overflow: hidden; }
 /* ---------- Form fields ---------- */
 .field { transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; }
 .field:focus { outline: none; border-color: #A2AD24; box-shadow: 0 0 0 4px rgba(162,173,36,0.16); background-color: #ffffff; }
+.field[aria-invalid="true"] { border-color: #DC2626; }
+
+/* 개인정보 동의 체크박스 */
+.agree-box { width: 1.15rem; height: 1.15rem; accent-color: #7C8620; cursor: pointer; flex-shrink: 0; transition: box-shadow 0.18s ease; border-radius: 4px; }
+.agree-box:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.45); }
+.text-link { color: #5E661A; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; border-radius: 4px; transition: color 0.18s ease; }
+.text-link:hover { color: #26301C; }
+.text-link:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.35); }
+.text-link:active { color: #37452C; }
+
+/* 파일 첨부 (드래그 앤 드롭) */
+.drop-zone { transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease; cursor: pointer; }
+.drop-zone:hover, .drop-zone.is-drag { border-color: #A2AD24; background-color: rgba(238,240,210,0.7); }
+.drop-zone:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(162,173,36,0.3); border-color: #A2AD24; }
+.drop-zone:active { background-color: rgba(221,225,165,0.6); }
+.file-remove { transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease; }
+.file-remove:hover { background-color: rgba(220,38,38,0.1); color: #B91C1C; }
+.file-remove:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.4); }
+.file-remove:active { transform: scale(0.9); }
+
+/* 개인정보처리방침 모달 */
+.pv-modal { opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0s linear 0.2s; }
+.pv-modal.is-open { opacity: 1; visibility: visible; transition: opacity 0.2s ease, visibility 0s; }
+.pv-modal .pv-panel { transform: translateY(12px); transition: transform 0.2s ease; }
+.pv-modal.is-open .pv-panel { transform: none; }
+.pv-close { transition: background-color 0.15s ease, transform 0.15s ease; }
+.pv-close:hover { background-color: rgba(162,173,36,0.14); }
+.pv-close:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.4); }
+.pv-close:active { transform: scale(0.92); }
+body.modal-open { overflow: hidden; }
+
+/* 개인정보처리방침 본문 (privacy.html · 모달 공용) */
+.privacy-doc { color: #3F4836; font-size: 0.9375rem; line-height: 1.85; word-break: keep-all; }
+.privacy-doc .pv-sec { margin-top: 2.25rem; }
+.privacy-doc h2 { font-size: 1.125rem; font-weight: 800; color: #26301C; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+.privacy-doc p { margin-top: 0.35rem; }
+.privacy-doc .pv-clause { margin-top: 0.75rem; }
+.privacy-doc .pv-item { padding-left: 1rem; }
+.privacy-doc .pv-sub { padding-left: 1rem; color: #5C6653; }
+.privacy-doc .pv-mark { margin-top: 0.75rem; font-weight: 700; color: #26301C; }
 
 /* ---------- 3D objects ---------- */
 @keyframes floatSlow { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-16px) translateX(4px); } }
@@ -302,4 +342,5 @@ body.menu-open { overflow: hidden; }
   .biz-card:hover, .biz-link:focus-visible, .biz-link:active, .value-card:hover, .feat-card:hover, .gal-item:hover, .gal-item:hover img { transform: none; }
   .m-drawer, .dd-panel, .m-sub { transition: none !important; }
   .nav-swap > span { transition: none !important; transform: none !important; }
+  .pv-modal, .pv-modal .pv-panel { transition: none !important; transform: none !important; }
 }

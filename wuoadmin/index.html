@@ -311,7 +311,8 @@
       var statusClass = row.status === 'done' ? 'status-done' : 'status-pending';
       var statusLabel = row.status === 'done' ? '완료' : '대기중';
       tr.innerHTML =
-        '<td class="px-4 py-3 font-semibold">' + escapeHtml(row.name) + '</td>' +
+        '<td class="px-4 py-3 font-semibold">' + escapeHtml(row.name) +
+          (attachmentsOf(row).length ? ' <span class="ml-1 text-xs font-medium text-brand-dark" title="첨부 파일">📎' + attachmentsOf(row).length + '</span>' : '') + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(row.phone) + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(row.email) + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</td>' +
@@ -365,9 +366,59 @@
       '<p><span class="font-bold">이메일</span> ' + escapeHtml(row.email) + '</p>' +
       '<p><span class="font-bold">문의 유형</span> ' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</p>' +
       '<p><span class="font-bold">접수일</span> ' + formatDate(row.created_at) + '</p>' +
-      '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>';
+      '<p><span class="font-bold">개인정보 동의</span> ' + (row.privacy_agreed ? '동의함 (' + formatDate(row.privacy_agreed_at || row.created_at) + ')' : '<span class="text-inkfaint">기록 없음 (동의 항목 도입 전 문의)</span>') + '</p>' +
+      '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>' +
+      renderAttachments(row);
     detailModal.classList.remove('hidden');
   }
+
+  // 첨부 파일: 비공개 버킷이라 누를 때마다 서버에서 60초짜리 서명 링크를 받아 내려받는다
+  function attachmentsOf(row) { return Array.isArray(row.attachments) ? row.attachments : []; }
+  function formatSize(bytes) {
+    bytes = Number(bytes) || 0;
+    return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + 'MB' : Math.max(1, Math.round(bytes / 1024)) + 'KB';
+  }
+  function renderAttachments(row) {
+    var list = attachmentsOf(row);
+    if (!list.length) return '';
+    return '<div><p class="font-bold mb-2">첨부 파일 (' + list.length + ')</p><ul class="space-y-2">' +
+      list.map(function (a, i) {
+        return '<li class="flex items-center gap-3 rounded-xl border border-brand-100 px-3.5 py-2.5">' +
+          '<span class="flex-1 min-w-0 truncate">' + escapeHtml(a.name || a.path) + '</span>' +
+          '<span class="text-xs text-inkfaint">' + formatSize(a.size) + '</span>' +
+          '<button type="button" class="att-download text-xs font-bold text-brand-dark px-3 py-1.5 rounded-full bg-brand-50 hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand active:scale-95" data-row="' + escapeHtml(row.id) + '" data-i="' + i + '">다운로드</button>' +
+        '</li>';
+      }).join('') + '</ul><p id="attError" class="hidden mt-2 text-xs font-semibold text-red-600"></p></div>';
+  }
+  document.getElementById('detailContent').addEventListener('click', async function (e) {
+    var btn = e.target.closest('.att-download');
+    if (!btn) return;
+    var row = allRows.find(function (r) { return String(r.id) === btn.getAttribute('data-row'); });
+    var a = row && attachmentsOf(row)[Number(btn.getAttribute('data-i'))];
+    if (!a) return;
+    var errEl = document.getElementById('attError');
+    errEl.classList.add('hidden');
+    btn.disabled = true;
+    try {
+      var res = await apiRequest('/api/admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'attachment-url', path: a.path, name: a.name }),
+      });
+      var data = await res.json();
+      if (!res.ok || !data.url) throw new Error((data && data.error) || '다운로드 링크를 만들지 못했습니다.');
+      var link = document.createElement('a');
+      link.href = data.url;
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      errEl.textContent = err.message;
+      errEl.classList.remove('hidden');
+    }
+    btn.disabled = false;
+  });
   document.getElementById('closeModalBtn').addEventListener('click', function () { detailModal.classList.add('hidden'); });
   detailModal.addEventListener('click', function (e) { if (e.target === detailModal) detailModal.classList.add('hidden'); });
 

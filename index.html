@@ -435,6 +435,31 @@
           placeholder="문의하실 내용을 자유롭게 남겨주세요."></textarea>
       </div>
 
+      <!-- 파일 첨부 (선택) -->
+      <div>
+        <p id="attachLabel" class="block text-sm font-bold text-ink mb-2">첨부 파일 <span class="font-medium text-inkfaint">(선택)</span></p>
+        <div id="dropZone" class="drop-zone rounded-xl border-2 border-dashed border-brand-200 bg-white/50 px-4 py-5 text-center" role="button" tabindex="0" aria-labelledby="attachLabel" aria-describedby="attachHelp">
+          <svg class="mx-auto mb-2 text-brand-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          <p class="text-sm text-inksoft"><span class="font-bold text-brand-darker">클릭하여 선택</span>하거나 파일을 여기로 끌어다 놓으세요.</p>
+          <p id="attachHelp" class="mt-1 text-xs text-inkfaint">한글 · 워드 · PDF · 이미지(jpg, png, webp) · 파일당 10MB · 최대 3개</p>
+        </div>
+        <input type="file" id="attachInput" class="sr-only" tabindex="-1" aria-hidden="true" multiple
+          accept=".hwp,.hwpx,.doc,.docx,.pdf,.jpg,.jpeg,.png,.webp">
+        <ul id="attachList" class="mt-3 space-y-2" aria-live="polite"></ul>
+        <p id="attachError" class="hidden mt-2 text-sm font-semibold text-red-600" role="alert"></p>
+      </div>
+
+      <!-- 개인정보처리방침 동의 (필수) -->
+      <div>
+        <div class="flex items-start gap-2.5">
+          <input type="checkbox" id="privacyAgree" name="privacyAgree" class="agree-box mt-0.5" aria-describedby="privacyError">
+          <label for="privacyAgree" class="text-sm text-ink leading-relaxed cursor-pointer">
+            <a href="/privacy" id="privacyOpen" class="text-link" target="_blank" rel="noopener">개인정보처리방침</a>에 동의합니다. <span class="text-brand-dark font-bold">(필수)</span>
+          </label>
+        </div>
+        <p id="privacyError" class="hidden mt-2 text-sm font-semibold text-red-600" role="alert">개인정보처리방침에 동의해야 문의를 보낼 수 있습니다.</p>
+      </div>
+
       <button type="submit" id="submitBtn" class="btn btn-primary w-full py-3.5 text-[15px]" data-ck="contact.form_submit">문의 보내기</button>
 
       <p id="formNotice" class="hidden text-sm font-semibold text-brand-darker text-center pt-1" data-ck="contact.form_success">
@@ -443,6 +468,23 @@
     </form>
   </div>
 </section>
+
+<!-- 개인정보처리방침 모달 (본문은 /privacy 에서 불러옴 — 실패하면 링크가 새 창으로 열림) -->
+<div id="privacyModal" class="pv-modal fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-6" aria-hidden="true">
+  <div class="absolute inset-0 bg-forest-darker/55" data-pv-close></div>
+  <div class="pv-panel relative w-full sm:max-w-2xl max-h-[88vh] sm:max-h-[80vh] bg-canvas rounded-t-[1.75rem] sm:rounded-[1.75rem] shadow-brand-lg flex flex-col" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <div class="flex items-center justify-between px-6 h-16 border-b border-brand-100 flex-shrink-0">
+      <h2 id="privacyModalTitle" class="text-lg font-extrabold text-ink">개인정보처리방침</h2>
+      <button type="button" class="pv-close w-10 h-10 -mr-2 rounded-full flex items-center justify-center text-ink" data-pv-close aria-label="닫기">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="privacyModalBody" class="privacy-doc overflow-y-auto px-6 pb-8 pt-2" tabindex="0"></div>
+    <div class="px-6 py-4 border-t border-brand-100 flex-shrink-0">
+      <button type="button" id="privacyAgreeBtn" class="btn btn-primary w-full py-3 text-[15px]">동의하고 닫기</button>
+    </div>
+  </div>
+</div>
 
 </main>
 
@@ -453,6 +495,7 @@
 <script src="/assets/js/layout.js"></script>
 <script src="/assets/js/content.js"></script>
 <script src="/assets/js/site.js"></script>
+<script src="/assets/js/contact-form.js"></script>
 <script>
   var reduceMotion = window.WUO && window.WUO.reducedMotion;
 
@@ -516,22 +559,7 @@
     window.addEventListener('resize', update);
   })();
 
-  // Contact form -> Supabase (client + site_content loading live in /assets/js/content.js)
-  var supabaseClient = window.WUO.supabase;
-  var siteContent = window.WUO.content;
-  var escapeAndBr = window.WUO.escapeAndBr;
-
-  var form = document.getElementById('consultation-form');
-  var notice = document.getElementById('formNotice');
-  var submitBtn = document.getElementById('submitBtn');
-
-  // ?inquiry=education|performance|press … → 문의 유형 미리 선택 (예: /?inquiry=press#contact)
-  (function () {
-    var q = new URLSearchParams(location.search).get('inquiry');
-    if (!q) return;
-    var opt = Array.prototype.find.call(form.inquiryType.options, function (o) { return o.value && o.value === q; });
-    if (opt) form.inquiryType.value = q;
-  })();
+  // 문의 폼(첨부·개인정보 동의·유형 미리 선택)은 /assets/js/contact-form.js
 
   // 다른 페이지에서 /#contact 로 들어온 경우: 스타일·문구 적용 후 높이가 바뀌어도 섹션 위치로 정확히 이동
   if (location.hash.length > 1) {
@@ -543,56 +571,6 @@
       if (window.WUO.contentReady) window.WUO.contentReady.then(function () { setTimeout(go, 50); });
     });
   }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = '전송 중...';
-    notice.classList.add('hidden');
-
-    var payload = {
-      name: form.name.value.trim(),
-      phone: form.phone.value.trim(),
-      email: form.email.value.trim(),
-      inquiryType: form.inquiryType.value,
-      message: form.message.value.trim()
-    };
-
-    supabaseClient.from('consultations').insert([{
-      name: payload.name,
-      phone: payload.phone,
-      email: payload.email,
-      inquiry_type: payload.inquiryType,
-      message: payload.message
-    }]).then(function (result) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = siteContent['contact.form_submit'] || '문의 보내기';
-      if (result.error) {
-        notice.textContent = '문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
-        notice.classList.remove('text-brand-darker');
-        notice.classList.add('text-red-600');
-        notice.classList.remove('hidden');
-        return;
-      }
-      notice.innerHTML = escapeAndBr(siteContent['contact.form_success'] || '문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-      notice.classList.remove('text-red-600');
-      notice.classList.add('text-brand-darker');
-      notice.classList.remove('hidden');
-      form.reset();
-
-      // Best-effort admin email notification (does not block success UI)
-      fetch('/api/send-notification', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(function (err) { console.warn('알림 이메일 발송 실패:', err); });
-    });
-  });
 </script>
 
 </body>
