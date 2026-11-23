@@ -1,6 +1,7 @@
 /*
  * Supabase 클라이언트 + 관리자 편집 콘텐츠 반영
  *   - data-ck="page.key"   → site_content 값으로 텍스트 교체 (줄바꿈 \n → <br>)
+ *     + data-ck-list="li 클래스" 가 붙은 목록(ul/ol) → 값의 한 줄이 <li> 하나
  *   - data-img="page.key"  → site_content 값(이미지 공개 URL)으로 src 교체,
  *                            대체 텍스트는 "page.key_alt" 키에서 읽음
  * anon 키는 공개용(읽기 전용) 키다. 쓰기 권한은 RLS 로 막혀 있고,
@@ -36,6 +37,13 @@
     root.querySelectorAll('[data-ck]').forEach(function (el) {
       var key = el.getAttribute('data-ck');
       if (map[key] == null) return;
+      // data-ck-list: 목록(ul/ol) — 값의 한 줄이 항목 하나 (관리자에서 줄을 추가하면 항목이 늘어남)
+      if (el.hasAttribute('data-ck-list')) {
+        var cls = el.getAttribute('data-ck-list') || '';
+        el.innerHTML = String(map[key]).split('\n').map(function (l) { return l.trim(); }).filter(Boolean)
+          .map(function (l) { return '<li' + (cls ? ' class="' + escapeHtml(cls) + '"' : '') + '>' + escapeHtml(l) + '</li>'; }).join('');
+        return;
+      }
       el.innerHTML = escapeAndBr(map[key]);
     });
     root.querySelectorAll('img[data-img]').forEach(function (img) {
