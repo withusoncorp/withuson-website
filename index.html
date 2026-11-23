@@ -87,10 +87,11 @@
         <span class="block" data-ck="hero.headline_1">함께하는 마음으로,</span>
         <span class="block mt-3 sm:mt-4 md:mt-5 whitespace-nowrap"><span class="text-brand-dark" data-ck="hero.headline_2_highlight">온 세상을 따뜻하게</span> <span data-ck="hero.headline_2_rest">연결합니다.</span></span>
       </h1>
-      <p class="reveal reveal-delay-2 mt-10 md:mt-12 text-sm sm:text-base lg:text-lg text-inksoft leading-relaxed max-w-md sm:max-w-xl md:max-w-2xl">
-        <span data-ck="hero.subcopy_1">나에게 꼭 맞는 전문가를 찾을 수 있는 플랫폼부터,</span><br>
-        <span data-ck="hero.subcopy_2">교육이 필요한 현장에 꼭 맞는 교육 솔루션을 전하여</span><br>
-        <span data-ck="hero.subcopy_3">일상에 온기와 성장을 더합니다.</span>
+      <p class="reveal reveal-delay-2 mt-10 md:mt-12 text-sm sm:text-base lg:text-lg text-inksoft leading-relaxed break-keep max-w-md sm:max-w-xl md:max-w-2xl">
+        <span data-ck="hero.subcopy_1">현장에 꼭 맞는 교육과 공연 솔루션부터</span><br class="hidden md:inline">
+        <span data-ck="hero.subcopy_2">나에게 꼭 맞는 상담 · 발달 · 정신건강의학 기관을 찾는 플랫폼,</span><br class="hidden md:inline">
+        <span data-ck="hero.subcopy_3">마음 건강 소식과 정보를 전하는 미디어까지.</span><br class="hidden md:inline">
+        <span data-ck="hero.subcopy_4">위더스온은 일상에 온기와 성장을 더합니다.</span>
       </p>
       <div class="reveal reveal-delay-3 mt-12 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-4">
         <a href="#contact" class="btn btn-primary px-7 py-3.5 text-[15px]">
@@ -209,7 +210,7 @@
 
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
       <!-- Card 1: Education -->
-      <div class="reveal biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full">
+      <a href="/education" class="reveal biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full biz-link">
         <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7" style="background:linear-gradient(135deg,#A2AD24,#7C8620)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
         </div>
@@ -226,27 +227,34 @@
           <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card1_tag4">문화예술교육</span>
           <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card1_tag5">진로체험</span>
         </div>
-        <a href="/education" class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card1_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+        <span class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card1_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
 
       <!-- Card 3: Performance -->
-      <div class="reveal reveal-delay-1 biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full">
+      <a href="/performance" class="reveal reveal-delay-1 biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full biz-link">
         <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7" style="background:linear-gradient(135deg,#F4C978,#EFA35C)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         </div>
-        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card3_title">찾아가는 공연</h3>
-        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card3_subtitle">[작성 예정]</p>
-        <p class="text-[15px] text-inksoft leading-relaxed" data-ck="business.card3_desc">공연이 필요한 현장으로 직접 찾아갑니다.</p>
-        <a href="/performance" class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card3_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card3_title">일상 속으로 찾아가는 공연</h3>
+        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card3_subtitle">STAGE L &amp; Play Book Concert</p>
+        <p class="text-[15px] text-inksoft leading-relaxed mb-7" data-ck="business.card3_desc">숙련된 아티스트와 함께 로비 · 라운지 · 강당 등 모든 일상의 공간과 배움의 현장에 맞춤형 문화예술 공연을 선사합니다.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card3_tag1">STAGE L</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card3_tag2">Play Book Concert</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card3_tag3">연주회</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card3_tag4">공연</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card3_tag5">문화예술</span>
+        </div>
+        <span class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card3_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
 
       <!-- Card 2: Mind matching platform -->
-      <div class="reveal biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full">
+      <a href="/platform" class="reveal biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full biz-link">
         <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7" style="background:linear-gradient(135deg,#EFA35C,#C97835)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
         </div>
-        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card2_title">마음 및 정신건강 전문가 매칭 플랫폼</h3>
-        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card2_subtitle">나에게 딱 맞는 전문가를 찾는 가장 확실한 방법</p>
+        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card2_title">마음 및 정신건강 전문기관 매칭 플랫폼 ‘훌터’</h3>
+        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card2_subtitle">나에게 딱 맞는 기관을 찾는 가장 확실한 방법</p>
         <p class="text-[15px] text-inksoft leading-relaxed mb-7">
           <span data-ck="business.card2_desc_1">발달센터, 심리상담센터, 정신건강의학과 등의 전문 도움이 필요한 이들의 상황을 분석해,</span><br>
           <span data-ck="business.card2_desc_2">검증된 맞춤형 전문가를 연결하는 B2B 및 B2C 매칭 서비스를 제공합니다.</span>
@@ -256,19 +264,24 @@
           <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card2_tag2">B2C 매칭</span>
           <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card2_tag3">맞춤 전문가 연결</span>
         </div>
-        <a href="/platform" class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card2_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+        <span class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card2_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
 
       <!-- Card 4: Online press -->
-      <div class="reveal reveal-delay-1 biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full">
+      <a href="/press" class="reveal reveal-delay-1 biz-card glass-strong rounded-[2rem] p-8 md:p-10 shadow-brand-sm flex flex-col h-full biz-link">
         <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7" style="background:linear-gradient(135deg,#57694A,#26301C)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
         </div>
-        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card4_title">온라인 언론사 마인드 투데이</h3>
-        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card4_subtitle">[작성 예정]</p>
-        <p class="text-[15px] text-inksoft leading-relaxed" data-ck="business.card4_desc">마인드 투데이는 위더스온이 운영하는 온라인 언론사입니다.</p>
-        <a href="/press" class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card4_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+        <h3 class="text-xl md:text-2xl font-bold text-ink mb-1.5 tracking-tight" data-ck="business.card4_title">마음 및 정신건강 소식과 정보를 전하는 인터넷 신문 마인드 투데이</h3>
+        <p class="text-sm text-brand-dark font-bold mb-5" data-ck="business.card4_subtitle">모든 사람들이 함께 읽을 수 있는 마음 건강 언론사</p>
+        <p class="text-[15px] text-inksoft leading-relaxed mb-7" data-ck="business.card4_desc">마음 건강과 관련된 소식과 정보를 전하고, 전문가의 칼럼 및 에세이를 기고하는 인터넷 신문 마인드 투데이를 운영합니다.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card4_tag1">마음건강</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card4_tag2">정신건강</span>
+          <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-darker text-xs font-semibold" data-ck="business.card4_tag3">복지정책</span>
+        </div>
+        <span class="more-link mt-auto pt-8 self-start text-sm md:text-[15px]"><span data-ck="business.card4_link">자세히 보기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
@@ -333,22 +346,31 @@
         <p class="text-sm md:text-[15px] text-inksoft mt-1.5" data-ck="mission.shared_subtitle">위더스온과 동행하는 모두는 함께 성장합니다.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5 md:gap-6">
+      <!-- lg 이상: 3열(EDU · MIND · ART) × 2행, 열 방향으로 채움 / 그 아래: 1열(분류별로 묶임) -->
+      <div class="grid lg:grid-cols-3 lg:grid-rows-2 lg:grid-flow-col gap-5 md:gap-6">
         <div class="mission-card rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#A2AD24; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
           <span class="inline-block px-2.5 py-1 rounded-full bg-brand-100 text-brand-darker text-[11px] font-bold tracking-wide mb-3">EDU</span>
           <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card1_desc">강사에게는 안정적인 활동의 장을,<br>배우는 이들에게는 성장의 경험을 제공합니다.</p>
+        </div>
+        <div class="mission-card mission-delay-1 rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#A2AD24; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
+          <span class="inline-block px-2.5 py-1 rounded-full bg-brand-100 text-brand-darker text-[11px] font-bold tracking-wide mb-3">EDU</span>
+          <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card3_desc">기관의 상황과 니즈에 맞춰 기획부터 운영, 파견까지<br>수준 높은 교육 서비스를 누릴 수 있도록 맞춤형 솔루션을 전합니다.</p>
         </div>
         <div class="mission-card mission-delay-1 rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#EFA35C; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
           <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide mb-3" style="background:#FCE7C8; color:#96521E;">MIND</span>
           <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card2_desc">고객에게는 신뢰할 수 있는 연결을,<br>전문가에게는 전문성을 살릴 기회를 제공합니다.</p>
         </div>
-        <div class="mission-card mission-delay-2 rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#A2AD24; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
-          <span class="inline-block px-2.5 py-1 rounded-full bg-brand-100 text-brand-darker text-[11px] font-bold tracking-wide mb-3">EDU</span>
-          <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card3_desc">기관의 상황과 니즈에 맞춰 기획부터 운영, 파견까지<br>수준 높은 교육 서비스를 누릴 수 있도록 맞춤형 솔루션을 전합니다.</p>
-        </div>
-        <div class="mission-card mission-delay-3 rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#EFA35C; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
+        <div class="mission-card mission-delay-2 rounded-3xl p-6 md:p-7 border-l-4" style="border-left-color:#EFA35C; background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
           <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide mb-3" style="background:#FCE7C8; color:#96521E;">MIND</span>
           <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card4_desc">다양한 바우처 혜택과 맞춤형 조건 필터링으로,<br>누구나 안심하고 전문가를 만날 수 있는 평등한 기회를 제공합니다.</p>
+        </div>
+        <div class="mission-card mission-delay-2 rounded-3xl p-6 md:p-7 border-l-4 mission-art" style="background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
+          <span class="badge-art inline-block px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide mb-3">ART</span>
+          <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card5_desc">예술가에게는 안정적인 무대와 활동의 기회를, 대중에게는 일상을 채우는 깊은 예술적 감동을 제공합니다.</p>
+        </div>
+        <div class="mission-card mission-delay-3 rounded-3xl p-6 md:p-7 border-l-4 mission-art" style="background: rgba(255,255,255,0.72); box-shadow: 0 10px 28px -10px rgba(42,43,30,0.16), 0 3px 10px -3px rgba(162,173,36,0.14);">
+          <span class="badge-art inline-block px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide mb-3">ART</span>
+          <p class="text-sm md:text-[15px] text-ink leading-relaxed" data-ck="mission.card6_desc">기관의 공간과 목적에 맞춘 기획부터 연출까지, 누구나 일상에서 문화예술 공연을 향유할 수 있도록 맞춤 공연 솔루션을 제공합니다.</p>
         </div>
       </div>
     </div>
@@ -363,7 +385,7 @@
     <p class="reveal text-xs md:text-sm font-bold tracking-[0.2em] text-brand-light uppercase mb-4" data-ck="contact.eyebrow">Contact</p>
     <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-5" data-ck="contact.headline">문의하기</h2>
     <p class="reveal reveal-delay-2 text-sm md:text-base text-white/65 leading-relaxed">
-      <span data-ck="contact.subcopy_1">교육 문의, 강사 등록 문의, 제휴 문의까지 —</span><br>
+      <span data-ck="contact.subcopy_1">교육 및 공연 문의, 제휴문의, 강사 및 연주자 등록 문의까지 —</span><br>
       <span data-ck="contact.subcopy_2">위더스온의 문은 언제나 활짝 열려 있습니다.</span>
     </p>
   </div>
@@ -398,8 +420,10 @@
           class="field w-full rounded-xl border border-brand-200 bg-white/70 px-4 py-3 text-sm text-ink">
           <option value="" disabled selected>선택해주세요</option>
           <option value="education">교육 문의</option>
+          <option value="performance">공연 문의</option>
           <option value="instructor">강사 등록 문의</option>
-          <option value="partnership">제휴 문의</option>
+          <option value="performer">연주자 등록 문의</option>
+          <option value="press">언론사 제휴 및 광고 문의</option>
           <option value="etc">기타 문의</option>
         </select>
       </div>
@@ -500,6 +524,25 @@
   var form = document.getElementById('consultation-form');
   var notice = document.getElementById('formNotice');
   var submitBtn = document.getElementById('submitBtn');
+
+  // ?inquiry=education|performance|press … → 문의 유형 미리 선택 (예: /?inquiry=press#contact)
+  (function () {
+    var q = new URLSearchParams(location.search).get('inquiry');
+    if (!q) return;
+    var opt = Array.prototype.find.call(form.inquiryType.options, function (o) { return o.value && o.value === q; });
+    if (opt) form.inquiryType.value = q;
+  })();
+
+  // 다른 페이지에서 /#contact 로 들어온 경우: 스타일·문구 적용 후 높이가 바뀌어도 섹션 위치로 정확히 이동
+  if (location.hash.length > 1) {
+    window.addEventListener('load', function () {
+      var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!target) return;
+      var go = function () { target.scrollIntoView({ behavior: 'auto', block: 'start' }); };
+      go();
+      if (window.WUO.contentReady) window.WUO.contentReady.then(function () { setTimeout(go, 50); });
+    });
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();

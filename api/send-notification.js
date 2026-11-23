@@ -1,8 +1,12 @@
+// 문의 유형 표시명 (partnership 은 2차 수정 전 옛 값)
 const INQUIRY_LABELS = {
   education: '교육 문의',
+  performance: '공연 문의',
   instructor: '강사 등록 문의',
-  partnership: '제휴 문의',
+  performer: '연주자 등록 문의',
+  press: '언론사 제휴 및 광고 문의',
   etc: '기타 문의',
+  partnership: '제휴 문의(이전 유형)',
 };
 
 const ADMIN_EMAIL = 'withusoncorp@withusoncorp.co.kr';

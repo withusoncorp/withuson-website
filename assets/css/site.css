@@ -66,6 +66,13 @@ body[data-accent="forest"] { --accent: #57694A; --accent-dark: #37452C; --accent
 .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; border-radius: 2px; background: #A2AD24; transition: width 0.25s ease; }
 .nav-link:hover::after, .nav-link.is-active::after, .nav-item.is-open > .nav-row > .nav-link::after { width: 100%; }
 .nav-link.is-active { color: #26301C; font-weight: 700; }
+/* Nav label swap (site-config.js 의 hoverLabel / activeLabel)
+   두 라벨을 같은 칸에 겹쳐 폭을 긴 쪽에 고정 → 전환해도 메뉴가 흔들리지 않는다 */
+.nav-swap { display: inline-grid; justify-items: start; }
+.nav-swap > span { grid-area: 1 / 1; transition: opacity 0.22s ease, transform 0.22s ease; }
+.nav-swap-b { opacity: 0; transform: translateY(6px); }
+.nav-link:hover .nav-swap.has-hover > .nav-swap-a, .nav-link:focus-visible .nav-swap.has-hover > .nav-swap-a, .nav-swap.show-alt > .nav-swap-a { opacity: 0; transform: translateY(-6px); }
+.nav-link:hover .nav-swap.has-hover > .nav-swap-b, .nav-link:focus-visible .nav-swap.has-hover > .nav-swap-b, .nav-swap.show-alt > .nav-swap-b { opacity: 1; transform: none; }
 .nav-link:focus-visible, .nav-toggle:focus-visible, .dd-link:focus-visible, .menu-btn:focus-visible, .m-link:focus-visible, .m-acc-btn:focus-visible {
   outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.35); border-radius: 8px;
 }
@@ -167,6 +174,22 @@ body.menu-open { overflow: hidden; }
   box-shadow: 0 24px 60px -12px rgba(162,173,36,0.28), 0 8px 24px -8px rgba(42,43,30,0.10);
   border-color: rgba(162,173,36,0.32);
 }
+/* 카드 전체가 링크인 사업 카드 (회사 소개 Business) */
+.biz-link { color: inherit; text-decoration: none; cursor: pointer; }
+.biz-link:focus-visible {
+  outline: none;
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 4px rgba(162,173,36,0.45), 0 24px 60px -12px rgba(162,173,36,0.28);
+}
+.biz-link:active { transform: translateY(-3px) scale(0.99); }
+.biz-link:hover .more-link, .biz-link:focus-visible .more-link { color: #26301C; }
+.biz-link:hover .more-link svg, .biz-link:focus-visible .more-link svg { transform: translateX(3px); }
+
+/* Mission: ART 카드 (EDU 그린 · MIND 오렌지와 구분되는 forest 계열) */
+.mission-art { border-left-color: #57694A; }
+/* 3열에서는 카드 폭이 좁아 줄이 자주 바뀐다 → 단어 중간에서 끊기지 않게 (작성자 줄바꿈은 유지) */
+.mission-card p { word-break: keep-all; }
+.badge-art { background: #E3E8DC; color: #37452C; }
 
 /* Values cards: sequential "power on" reveal */
 .value-card {
@@ -276,6 +299,7 @@ body.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   .float-slow, .float-med, .float-fast, .spin-slow, .pulse-ring { animation: none !important; }
   .reveal, .reveal-rise, .value-card, .mission-card { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; animation: none !important; }
-  .biz-card:hover, .value-card:hover, .feat-card:hover, .gal-item:hover, .gal-item:hover img { transform: none; }
+  .biz-card:hover, .biz-link:focus-visible, .biz-link:active, .value-card:hover, .feat-card:hover, .gal-item:hover, .gal-item:hover img { transform: none; }
   .m-drawer, .dd-panel, .m-sub { transition: none !important; }
+  .nav-swap > span { transition: none !important; transform: none !important; }
 }
