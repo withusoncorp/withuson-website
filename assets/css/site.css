@@ -360,6 +360,39 @@ body[data-accent="mix"] .vb-icon { background: linear-gradient(135deg, #EFA35C, 
   .gd-band-btn { align-self: center; }
 }
 
+/* ---------- 교육 FIELDS: 카테고리 카드 (리플렛 ④ · 색은 상단 띠와 불릿에만) ---------- */
+.fc-cards { display: grid; gap: 1.25rem; }
+/* 데스크톱: 진단 | 심리상담 한 줄, 힐링(3열 불릿)은 아래 전체 폭 */
+@media (min-width: 1024px) { .fc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; } .fc-heal { grid-column: 1 / -1; } }
+.fc-card { background: #FFFFFF; border: 1px solid rgba(38,48,28,0.10); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 16px -6px rgba(42,43,30,0.08); display: flex; flex-direction: column; }
+.fc-head { padding: 1rem 1.5rem; color: #FFFFFF; font-size: 1.125rem; font-weight: 800; letter-spacing: -0.02em; }
+.fc-diag .fc-head { background: linear-gradient(135deg, #F6BE7E, #EFA35C 50%, #C97835); }
+.fc-counsel .fc-head { background: linear-gradient(135deg, #6E7E5A, #37452C 50%, #1E2715); }
+.fc-heal .fc-head { background: linear-gradient(135deg, #C9D35E 0%, #A2AD24 50%, #7C8620 100%); }
+.fc-body { padding: 1.25rem 1.5rem 1.5rem; }
+.fc-desc { padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(38,48,28,0.09); font-size: 0.875rem; line-height: 1.65; color: #5C6653; word-break: keep-all; }
+/* 목록(ul)은 display: contents → 항목과 '맞춤 구성'이 한 그리드에 놓인다 */
+.fc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem 1rem; }
+.fc-list { display: contents; }
+@media (min-width: 640px) { .fc-grid.fc-c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.fc-list > li, .fc-plus { position: relative; padding-left: 0.95rem; font-size: 0.875rem; line-height: 1.55; color: #2A2B1E; word-break: keep-all; }
+.fc-list > li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 9999px; }
+.fc-plus { padding-left: 1.2rem; font-weight: 600; }
+.fc-plus::before { content: ''; position: absolute; left: 0; top: 0.2em; width: 0.95rem; height: 0.95rem; }
+.fc-diag .fc-list > li::before { background: #DE8A45; }
+.fc-counsel .fc-list > li::before { background: #57694A; }
+.fc-heal .fc-list > li::before { background: #A2AD24; }
+.fc-diag .fc-plus::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DE8A45' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7.5v9M7.5 12h9'/%3E%3C/svg%3E") center / contain no-repeat; }
+.fc-counsel .fc-plus::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2337452C' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7.5v9M7.5 12h9'/%3E%3C/svg%3E") center / contain no-repeat; }
+.fc-heal .fc-plus::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A2AD24' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7.5v9M7.5 12h9'/%3E%3C/svg%3E") center / contain no-repeat; }
+@media (min-width: 768px) { .fc-head { font-size: 1.25rem; padding: 1.1rem 1.75rem; } .fc-body { padding: 1.4rem 1.75rem 1.75rem; } .fc-desc, .fc-list > li, .fc-plus { font-size: 0.9375rem; } }
+/* 전문가 칩 띠 (리플렛 ④ 하단 박스 첫 줄) */
+.fc-experts { padding: 1.5rem; border-radius: 1.5rem; background: #EEF0D2; display: flex; flex-direction: column; gap: 0.9rem; }
+.fc-experts-title { font-size: 0.9375rem; font-weight: 800; color: #2A2B1E; letter-spacing: -0.01em; word-break: keep-all; }
+.fc-experts-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.fc-experts-chips > li { padding: 0.35rem 0.8rem; border-radius: 9999px; background: #FFFFFF; border: 1px solid rgba(124,134,32,0.45); color: #5E661A; font-size: 0.8125rem; font-weight: 600; line-height: 1.4; }
+@media (min-width: 768px) { .fc-experts { padding: 1.75rem 2rem; } .fc-experts-title { font-size: 1.0625rem; } }
+
 /* 단계·프로그램 카드의 불릿 목록 (data-ck-list) */
 .proc-list { display: flex; flex-direction: column; gap: 0.45rem; text-align: left; }
 .proc-list > li { position: relative; padding-left: 0.95rem; font-size: 0.875rem; line-height: 1.6; color: #5C6653; word-break: keep-all; }

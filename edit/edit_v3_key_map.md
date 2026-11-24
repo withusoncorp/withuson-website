@@ -52,6 +52,7 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 2 | `performance.features_eyebrow/_headline/_subcopy`, `performance.feature1~3_title/_desc` (옛 KEY FEATURES 안의 Together·Trust·Growth → `performance.values_*`로 이동) | 없음 |
 | 2 | `platform.process_eyebrow`, `platform.process_headline`, `platform.process_step1~3_title/_desc` (→ `platform.values_*`, 제목은 Phase 5 WHY HOOLTER) | 없음 |
 | 2 | `press.process_eyebrow`, `press.process_headline`, `press.process_step1~3_title/_desc` (→ `press.values_*`) | 없음 |
+| 3 | `education.fields_tag1~5` (교육 분야 태그 5개: 심리상담 교육 · 문화예술 교육 · 힐링 프로그램 · 조직문화 진단 · 심리검사) | 없음 |
 
 ## 4. 새로 생긴 키
 
@@ -65,3 +66,5 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 2 | `{education,performance}.guide_eyebrow/_headline_1/_headline_2/_headline_highlight/_subcopy` | GUIDE 제목부 |
 | 2 | `{education,performance}.guide_card1~3_label/_title/_tags/_desc` | GUIDE 카드 (`_tags`는 한 줄에 칩 하나) |
 | 2 | `{education,performance}.guide_band_label/_title/_desc/_button`, `education.guide_band_tags` | GUIDE 안내 띠 |
+| 3 | `education.cat1~3_title/_desc/_items/_plus` | 교육 FIELDS 카테고리 카드 (`_items`는 한 줄에 프로그램 하나) |
+| 3 | `education.fields_experts_title`, `education.fields_experts_tags` | 전문가 칩 띠 (칩 10개) |
