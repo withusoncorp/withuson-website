@@ -184,6 +184,24 @@ body.menu-open { overflow: hidden; }
 .biz-link:active { transform: translateY(-3px) scale(0.99); }
 .biz-link:hover .more-link, .biz-link:focus-visible .more-link { color: #26301C; }
 .biz-link:hover .more-link svg, .biz-link:focus-visible .more-link svg { transform: translateX(3px); }
+/* Business 카드: 주요 고객 · 제공 서비스 표 (회사소개서 p05 .kv-bz) — 카드 아래쪽에 붙는다 */
+.biz-kv { margin-top: auto; padding-top: 1.75rem; display: grid; grid-template-columns: 6.25rem 1fr; }
+.biz-kv dt, .biz-kv dd { padding: 0.8rem 0; border-top: 1px solid rgba(38,48,28,0.12); font-size: 0.875rem; line-height: 1.6; word-break: keep-all; }
+.biz-kv dt { color: #5E661A; font-weight: 600; padding-right: 1rem; }
+.biz-kv dd { color: #3F4636; font-weight: 400; }
+/* 작성자 줄바꿈(<br>)은 데스크톱에서 각 줄이 한 줄에 들어갈 때만 쓴다 (index.html 스크립트가 .br-fit 판정) */
+.biz-kv dd br { display: none; }
+@media (min-width: 1024px) { .biz-kv dd.br-fit br { display: inline; } }
+@media (min-width: 768px) { .biz-kv dt, .biz-kv dd { font-size: 0.9375rem; } }
+/* 1024px 미만(모바일 · 2열 태블릿)은 카드 폭이 좁아 라벨 위 · 내용 아래로 쌓는다 */
+@media (max-width: 1023px) {
+  .biz-kv { grid-template-columns: 1fr; }
+  .biz-kv dt { padding-bottom: 0.15rem; }
+  .biz-kv dd { border-top: 0; padding-top: 0; }
+}
+/* '자세히 보기' 화살표: 카드 우측 하단 여백 */
+.biz-more { position: absolute; right: 1.75rem; bottom: 1.5rem; }
+@media (min-width: 768px) { .biz-more { right: 2.5rem; bottom: 2rem; } }
 
 /* Mission: ART 카드 (EDU 그린 · MIND 오렌지와 구분되는 forest 계열) */
 .mission-art { border-left-color: #57694A; }

@@ -26,6 +26,7 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 |---|---|---|---|
 | `business.card2_title` | 08-05 (초기 시드) | v2 문구가 HTML에만 들어가고 DB에는 옛 문구가 남음 → 화면에 옛 문구 | **v3 SQL로 갱신** (1-3 #1) |
 | `business.card2_subtitle` | 08-05 | 위와 같음 | **v3 SQL로 갱신** (1-3 #2) |
+| `business.card2_tag1~3` | 08-05 | 차이는 없지만(HTML도 옛 태그였음) 1-1 태그 교체 후 DB 옛 값이 덮어씀 | **v3 SQL로 갱신** (1-1) |
 | `contact.subcopy_1` | 08-05 | 위와 같음 | **v3 SQL로 갱신** (1-3 #3) |
 | `platform.overview_desc` | 11-23 (관리자) | B2B·B2C 문구 포함 | **v3 SQL로 갱신** (5-1, Phase 5) |
 | `business.card3_subtitle` | 11-24 (관리자, 오늘) | 사용자가 직접 수정 ("로비 · 라운지로 찾아가는 사내 문화 복지 공연") | 유지 (0-4 #3) |
@@ -42,4 +43,16 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 
 | Phase | 키 | DB 행 |
 |---|---|---|
-| (작업 중 갱신) | | |
+| 1 | `business.card1_desc_1`, `business.card1_desc_2` | 있음 (08-05) |
+| 1 | `business.card2_desc_1`, `business.card2_desc_2` | 있음 (08-05, **'B2B 및 B2C' 포함**) |
+| 1 | `business.card3_desc` | 있음 (11-23 관리자) |
+| 1 | `business.card4_desc` | 있음 (11-23 관리자) |
+
+## 4. 새로 생긴 키
+
+| Phase | 키 | 비고 |
+|---|---|---|
+| 1 | `business.card1~4_clients` | Business 카드 표 '주요 고객' |
+| 1 | `business.card1~4_service` | Business 카드 표 '제공 서비스' (줄바꿈은 1024px 이상에서 각 줄이 들어갈 때만 적용) |
+| 1 | `business.card2_tag4` | 훌터 카드 태그 4번째 '간편 예약' |
+| 1 | `index.contact_notice` | 문의하기 회사소개서 안내 |

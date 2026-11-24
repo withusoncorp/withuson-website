@@ -19,11 +19,16 @@
 insert into site_content (key, value, updated_at) values
   ('business.card2_title',    '마음 및 정신건강 전문기관 매칭 플랫폼 ‘훌터’', now()),
   ('business.card2_subtitle', '나에게 딱 맞는 기관을 찾는 가장 확실한 방법', now()),
-  ('contact.subcopy_1',       '교육 및 공연 문의, 제휴문의, 강사 및 연주자 등록 문의까지 —', now())
+  ('contact.subcopy_1',       '교육 및 공연 문의, 제휴문의, 강사 및 연주자 등록 문의까지 —', now()),
+  -- 1-1 훌터 카드 태그 (DB의 'B2B 구독' · 'B2C 매칭' · '맞춤 전문가 연결'이 새 태그를 덮어쓰므로 갱신)
+  ('business.card2_tag1',     '바우처 탐색', now()),
+  ('business.card2_tag2',     '검증된 전문가', now()),
+  ('business.card2_tag3',     '지도 검색', now())
 on conflict (key) do update
   set value = excluded.value,
       updated_at = excluded.updated_at;
 
 -- 확인용
 -- select key, value from site_content
---  where key in ('business.card2_title','business.card2_subtitle','contact.subcopy_1');
+--  where key in ('business.card2_title','business.card2_subtitle','contact.subcopy_1',
+--                'business.card2_tag1','business.card2_tag2','business.card2_tag3');
