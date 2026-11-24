@@ -61,7 +61,7 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 1 | `business.card1~4_clients` | Business 카드 표 '주요 고객' |
 | 1 | `business.card1~4_service` | Business 카드 표 '제공 서비스' (줄바꿈은 1024px 이상에서 각 줄이 들어갈 때만 적용) |
 | 1 | `business.card2_tag4` | 훌터 카드 태그 4번째 '간편 예약' |
-| 1 | `index.contact_notice` | 문의하기 회사소개서 안내 |
+| 1 | ~~`index.contact_notice`~~ | 문의하기 회사소개서 안내 — 11-24 사용자 요청으로 박스 삭제 (DB 행 없음) |
 | 2 | `{education,performance,platform,press}.values_eyebrow/_headline/_subcopy`, `.values_card1~3_title/_desc` | CORE VALUES (ValuesBlock). 회사 정의 줄은 회사 소개와 같은 키 `values.card1~3_desc` 사용 |
 | 2 | `{education,performance}.guide_eyebrow/_headline_1/_headline_2/_headline_highlight/_subcopy` | GUIDE 제목부 |
 | 2 | `{education,performance}.guide_card1~3_label/_title/_tags/_desc` | GUIDE 카드 (`_tags`는 한 줄에 칩 하나) |

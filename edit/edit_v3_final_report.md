@@ -59,7 +59,8 @@
   - Business 카드 4장 모두 표가 있고, 첫 행 위에도 구분선이 있다.
   - 화살표가 우측 하단에 있고 표와 겹치지 않는다.
   - 데스크톱·태블릿에서 카드 4장 높이가 같다.
-  - 훌터 태그가 바뀌었고, 문의하기 안내 박스가 보인다.
+  - 훌터 태그가 바뀌었다.
+  - 문의하기 회사소개서 안내 박스(1-2)는 검증 후 사용자 요청으로 삭제했다(11-24).
 - **B2B·B2C**: HTML·JS·CSS에서 0개, 실제 화면에서 0개.
   - DB에는 쓰지 않는 키 `business.card2_desc_2`에 1곳 남아 있다. 4번 참고.
 - **1-3 미반영 문구**: 사용자가 11-24에 `edit_v3_content.sql`을 실행해 DB 갱신을 확인했다. 실제 DB 화면에 새 문구가 나온다.
@@ -78,7 +79,6 @@
 - **회사 소개**
   - `business.card1~4_clients`, `business.card1~4_service`
   - `business.card2_tag4`
-  - `index.contact_notice`
 - **CORE VALUES**
   - `{education,performance,platform,press}.values_eyebrow`, `.values_headline`, `.values_subcopy`
   - `{education,performance,platform,press}.values_card1~3_title`, `.values_card1~3_desc`
