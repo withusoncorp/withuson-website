@@ -47,6 +47,11 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 1 | `business.card2_desc_1`, `business.card2_desc_2` | 있음 (08-05, **'B2B 및 B2C' 포함**) |
 | 1 | `business.card3_desc` | 있음 (11-23 관리자) |
 | 1 | `business.card4_desc` | 있음 (11-23 관리자) |
+| 2 | `education.process_eyebrow`, `education.process_headline`, `education.process_step1~4_title/_desc` (교육 PROCESS 4단계) | 없음 |
+| 2 | `performance.process_eyebrow`, `performance.process_headline`, `performance.proc_subcopy`, `performance.proc_step1~5_title/_items`, `performance.proc_output_label`, `performance.proc_output_tag1~3` (공연 PROCESS 5단계 + 결과물) | 없음 |
+| 2 | `performance.features_eyebrow/_headline/_subcopy`, `performance.feature1~3_title/_desc` (옛 KEY FEATURES 안의 Together·Trust·Growth → `performance.values_*`로 이동) | 없음 |
+| 2 | `platform.process_eyebrow`, `platform.process_headline`, `platform.process_step1~3_title/_desc` (→ `platform.values_*`, 제목은 Phase 5 WHY HOOLTER) | 없음 |
+| 2 | `press.process_eyebrow`, `press.process_headline`, `press.process_step1~3_title/_desc` (→ `press.values_*`) | 없음 |
 
 ## 4. 새로 생긴 키
 
@@ -56,3 +61,7 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 1 | `business.card1~4_service` | Business 카드 표 '제공 서비스' (줄바꿈은 1024px 이상에서 각 줄이 들어갈 때만 적용) |
 | 1 | `business.card2_tag4` | 훌터 카드 태그 4번째 '간편 예약' |
 | 1 | `index.contact_notice` | 문의하기 회사소개서 안내 |
+| 2 | `{education,performance,platform,press}.values_eyebrow/_headline/_subcopy`, `.values_card1~3_title/_desc` | CORE VALUES (ValuesBlock). 회사 정의 줄은 회사 소개와 같은 키 `values.card1~3_desc` 사용 |
+| 2 | `{education,performance}.guide_eyebrow/_headline_1/_headline_2/_headline_highlight/_subcopy` | GUIDE 제목부 |
+| 2 | `{education,performance}.guide_card1~3_label/_title/_tags/_desc` | GUIDE 카드 (`_tags`는 한 줄에 칩 하나) |
+| 2 | `{education,performance}.guide_band_label/_title/_desc/_button`, `education.guide_band_tags` | GUIDE 안내 띠 |

@@ -310,41 +310,61 @@ body.modal-open { overflow: hidden; }
 /* Vision scroll-linked stage */
 .vision-stage { will-change: opacity, transform; }
 
-/* ---------- Process diagram ---------- */
-.proc-step { position: relative; }
-.proc-num { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 10px 24px -8px rgba(var(--accent-rgb),0.55), inset 0 2px 4px rgba(255,255,255,0.35); }
-/* 단계 사이 점선: 그리드 gap(모바일 2.5rem / 데스크톱 1.5rem)에 맞춘 좌표 */
+/* ---------- CORE VALUES: ValuesBlock (4개 사업 페이지 공통 · 회사 소개 #values 와 같은 카드 언어) ----------
+   페이지 포인트 컬러는 아이콘 배경에만 쓴다 (교육 brand · 공연 warm · 훌터 warm→brand · 미디어 forest) */
+.vb-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 768px) { .vb-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; } }
+.vb-card, .value-card { background: #FFFFFF; border: 1px solid rgba(38,48,28,0.10); border-radius: 1.5rem; padding: 2rem; box-shadow: 0 4px 16px -6px rgba(42,43,30,0.08); height: 100%; }
+@media (min-width: 768px) { .vb-card { padding: 2.25rem; } }
+.vb-icon { width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); margin-bottom: 1.5rem; }
+body[data-accent="mix"] .vb-icon { background: linear-gradient(135deg, #EFA35C, #A2AD24); }
+.vb-num { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.2em; color: #8A917F; margin-bottom: 0.35rem; }
+.vb-name { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: #2A2B1E; line-height: 1.25; }
+.vb-def { margin-top: 0.3rem; font-size: 0.8125rem; font-weight: 600; color: #7A8270; }
+.vb-desc { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(38,48,28,0.09); font-size: 0.875rem; line-height: 1.7; color: #5C6653; word-break: keep-all; }
+@media (min-width: 768px) { .vb-name { font-size: 1.7rem; } .vb-desc { font-size: 0.9375rem; } }
+
+/* ---------- GUIDE: 운영 안내 공통 컴포넌트 (교육 p12 · 공연 p30) ---------- */
+.gd-grid { display: grid; gap: 1rem; }
+@media (min-width: 1024px) { .gd-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; } }
+.gd-card { background: #FFFFFF; border: 1px solid rgba(var(--accent-rgb),0.18); border-radius: 1.5rem; padding: 1.75rem; box-shadow: 0 4px 16px -6px rgba(42,43,30,0.08); display: flex; flex-direction: column; gap: 1.25rem; }
+.gd-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+.gd-icon { flex: none; width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); }
+.gd-label { padding: 0.3rem 0.75rem; border-radius: 9999px; background: var(--accent-softer); border: 1px solid rgba(var(--accent-rgb),0.25); color: var(--accent-darker); font-size: 0.75rem; font-weight: 700; line-height: 1.4; text-align: center; word-break: keep-all; }
+.gd-title { font-size: 1.125rem; font-weight: 800; color: #2A2B1E; letter-spacing: -0.02em; margin-bottom: 0.75rem; word-break: keep-all; }
+.gd-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+.gd-chips > li { padding: 0.3rem 0.7rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent-darker); font-size: 0.75rem; font-weight: 600; line-height: 1.4; }
+.gd-desc { font-size: 0.875rem; line-height: 1.7; color: #5C6653; word-break: keep-all; }
+@media (min-width: 768px) { .gd-card { padding: 2rem; } .gd-title { font-size: 1.25rem; } .gd-desc { font-size: 0.9375rem; } .gd-chips > li { font-size: 0.8125rem; } }
+/* 태블릿(768~1023px): 카드 가로형 — 아이콘·라벨 왼쪽, 내용 오른쪽 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gd-card { flex-direction: row; align-items: flex-start; gap: 1.75rem; }
+  .gd-head { flex-direction: column; align-items: flex-start; width: 9.5rem; flex: none; }
+  .gd-label { text-align: left; }
+  .gd-body { flex: 1; min-width: 0; }
+}
+/* 안내 띠: brand-50 배경 + 왼쪽 brand 강조선 + 오른쪽 문의 버튼 */
+.gd-band { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem 1.75rem 1.75rem 2.1rem; border-radius: 1.5rem; background: #F8F9EC; border: 1px solid rgba(162,173,36,0.22); }
+.gd-band::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #A2AD24; }
+.gd-band-icon { flex: none; width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; background: #FFFFFF; color: #5E661A; }
+.gd-band-label { font-size: 0.8125rem; font-weight: 700; color: #5E661A; margin-bottom: 0.2rem; }
+.gd-band-title { font-size: 1.25rem; font-weight: 800; color: #2A2B1E; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+.gd-band-desc { font-size: 0.875rem; line-height: 1.7; color: #4A5240; word-break: keep-all; }
+.gd-chips-band { margin: 0.9rem 0 0; }
+.gd-chips-band > li { background: #FFFFFF; color: #5E661A; border: 1px solid rgba(162,173,36,0.45); }
+.gd-band-btn { align-self: flex-start; white-space: nowrap; }
 @media (min-width: 768px) {
-  .proc-step:not(:last-child)::after {
-    content: ''; position: absolute; top: 1.75rem; left: calc(50% + 2.25rem); right: calc(-50% + 0.75rem);
-    border-top: 2px dashed rgba(var(--accent-rgb),0.45);
-  }
+  .gd-band { flex-direction: row; align-items: center; gap: 1.75rem; padding: 2rem 2.25rem 2rem 2.6rem; }
+  .gd-band-body { flex: 1; min-width: 0; }
+  .gd-band-desc { font-size: 0.9375rem; }
+  .gd-band-btn { align-self: center; }
 }
-@media (max-width: 767px) {
-  .proc-step:not(:last-child)::after {
-    content: ''; position: absolute; left: 1.75rem; top: 4rem; bottom: -2rem;
-    border-left: 2px dashed rgba(var(--accent-rgb),0.45);
-  }
-}
-/* 5단계처럼 칸이 많은 과정(.proc-lg): 1024px 이상만 가로, 그 아래는 세로 타임라인 */
-@media (max-width: 1023px) {
-  .proc-lg .proc-step:not(:last-child)::after {
-    content: ''; position: absolute; left: 1.75rem; right: auto; top: 4rem; bottom: -2rem;
-    border-top: 0; border-left: 2px dashed rgba(var(--accent-rgb),0.45);
-  }
-}
-@media (min-width: 1024px) {
-  .proc-lg .proc-step:not(:last-child)::after {
-    content: ''; position: absolute; top: 1.75rem; bottom: auto; left: calc(50% + 2.25rem); right: calc(-50% + 0.75rem);
-    border-left: 0; border-top: 2px dashed rgba(var(--accent-rgb),0.45);
-  }
-}
+
 /* 단계·프로그램 카드의 불릿 목록 (data-ck-list) */
 .proc-list { display: flex; flex-direction: column; gap: 0.45rem; text-align: left; }
 .proc-list > li { position: relative; padding-left: 0.95rem; font-size: 0.875rem; line-height: 1.6; color: #5C6653; word-break: keep-all; }
 .proc-list > li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 9999px; background: var(--accent); }
 @media (min-width: 768px) { .proc-list > li { font-size: 0.9375rem; } }
-.proc-lg .proc-list > li { font-size: 0.875rem; }
 
 /* ---------- Image slots (data-img) ---------- */
 .img-slot { position: relative; }

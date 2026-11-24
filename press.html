@@ -190,32 +190,37 @@
   </div>
 </section>
 
-<!-- ④ 핵심 가치 (가치 카드 3장 · 순서가 있는 과정이 아니므로 연결선 없음) -->
-<section id="process" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="핵심 가치">
+
+<!-- CORE VALUES (ValuesBlock 공통 컴포넌트 · 4개 사업 페이지 동일 마크업 · 회사 정의 줄은 회사 소개 values.card*_desc 와 같은 키) -->
+<section id="values" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="핵심 가치">
   <div class="max-w-6xl mx-auto">
     <div class="reveal text-center mb-12 md:mb-16">
-      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="press.process_eyebrow">Core Values</p>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="press.process_headline">마인드 투데이 핵심 가치</h2>
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="press.values_eyebrow">Core Values</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight break-keep" data-ck="press.values_headline">마인드 투데이 핵심 가치</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="press.values_subcopy">이 사업이 구현하는 세 가지 운영 원칙</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5 md:gap-6">
-      <div class="reveal val-card feat-card glass-strong rounded-3xl p-7 md:p-9 shadow-brand-sm h-full text-center">
-        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mx-auto mb-5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <p class="text-xs font-extrabold tracking-[0.2em] accent-text mb-1.5" aria-hidden="true">01</p>
-        <h3 class="text-2xl md:text-[1.7rem] font-extrabold accent-text-deep tracking-tight mb-3" data-ck="press.process_step1_title">Together</h3>
-        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed break-keep" data-ck="press.process_step1_desc">마인드 투데이 모든 독자들이 함께 읽고 공유할 수 있는 소식을 전합니다.</p>
-      </div>
-      <div class="reveal reveal-delay-1 val-card feat-card glass-strong rounded-3xl p-7 md:p-9 shadow-brand-sm h-full text-center">
-        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mx-auto mb-5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <p class="text-xs font-extrabold tracking-[0.2em] accent-text mb-1.5" aria-hidden="true">02</p>
-        <h3 class="text-2xl md:text-[1.7rem] font-extrabold accent-text-deep tracking-tight mb-3" data-ck="press.process_step2_title">Trust</h3>
-        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed break-keep" data-ck="press.process_step2_desc">정직하고 신뢰할 수 있는 정보를 전하는 것을 원칙으로 합니다.</p>
-      </div>
-      <div class="reveal reveal-delay-2 val-card feat-card glass-strong rounded-3xl p-7 md:p-9 shadow-brand-sm h-full text-center">
-        <div class="w-12 h-12 rounded-2xl accent-bg flex items-center justify-center mx-auto mb-5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
-        <p class="text-xs font-extrabold tracking-[0.2em] accent-text mb-1.5" aria-hidden="true">03</p>
-        <h3 class="text-2xl md:text-[1.7rem] font-extrabold accent-text-deep tracking-tight mb-3" data-ck="press.process_step3_title">Growth</h3>
-        <p class="text-sm md:text-[15px] text-inksoft leading-relaxed break-keep" data-ck="press.process_step3_desc">마인드 투데이 모든 독자들이 자신의 마음 · 정신건강을 스스로 살피고 성장하는 데 도움이 되는 소식과 정보를 전합니다.</p>
-      </div>
+    <div class="vb-grid">
+      <article class="reveal vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <p class="vb-num" aria-hidden="true">01</p>
+        <h3 class="vb-name" data-ck="press.values_card1_title">Together</h3>
+        <p class="vb-def" data-ck="values.card1_desc">혼자가 아닌 함께</p>
+        <p class="vb-desc" data-ck="press.values_card1_desc">마인드 투데이 모든 독자들이 함께 읽고 공유할 수 있는 소식을 전합니다.</p>
+      </article>
+      <article class="reveal reveal-delay-1 vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <p class="vb-num" aria-hidden="true">02</p>
+        <h3 class="vb-name" data-ck="press.values_card2_title">Trust</h3>
+        <p class="vb-def" data-ck="values.card2_desc">신뢰할 수 있는 연결</p>
+        <p class="vb-desc" data-ck="press.values_card2_desc">정직하고 신뢰할 수 있는 정보를 전하는 것을 원칙으로 합니다.</p>
+      </article>
+      <article class="reveal reveal-delay-2 vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
+        <p class="vb-num" aria-hidden="true">03</p>
+        <h3 class="vb-name" data-ck="press.values_card3_title">Growth</h3>
+        <p class="vb-def" data-ck="values.card3_desc">지속 가능한 성장</p>
+        <p class="vb-desc" data-ck="press.values_card3_desc">마인드 투데이 모든 독자들이 자신의 마음 · 정신건강을 스스로 살피고 성장하는 데 도움이 되는 소식과 정보를 전합니다.</p>
+      </article>
     </div>
   </div>
 </section>

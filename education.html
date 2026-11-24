@@ -193,43 +193,38 @@
   </div>
 </section>
 
-<!-- ④ 진행 과정 (도식) -->
-<section id="process" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="진행 과정">
-  <div class="max-w-5xl mx-auto">
-    <div class="reveal text-center mb-14 md:mb-20">
-      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="education.process_eyebrow">Process</p>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight" data-ck="education.process_headline">문의부터 결과 보고까지</h2>
+
+<!-- CORE VALUES (ValuesBlock 공통 컴포넌트 · 4개 사업 페이지 동일 마크업 · 회사 정의 줄은 회사 소개 values.card*_desc 와 같은 키) -->
+<section id="values" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="핵심 가치">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="education.values_eyebrow">Core Values</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight break-keep" data-ck="education.values_headline">위더스온 교육의 핵심 가치</h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed" data-ck="education.values_subcopy">이 사업이 구현하는 세 가지 운영 원칙</p>
     </div>
-    <ol class="grid md:grid-cols-4 gap-10 md:gap-6">
-      <li class="proc-step reveal flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
-        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">01</div>
-        <div class="pt-1 md:pt-0">
-          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="education.process_step1_title">문의</h3>
-          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="education.process_step1_desc">교육이 필요한 현장의 상황과 니즈를 듣습니다.</p>
-        </div>
-      </li>
-      <li class="proc-step reveal reveal-delay-1 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
-        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">02</div>
-        <div class="pt-1 md:pt-0">
-          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="education.process_step2_title">기획</h3>
-          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="education.process_step2_desc">현장에 꼭 맞는 교육 프로그램을 설계합니다.</p>
-        </div>
-      </li>
-      <li class="proc-step reveal reveal-delay-2 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
-        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">03</div>
-        <div class="pt-1 md:pt-0">
-          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="education.process_step3_title">운영</h3>
-          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="education.process_step3_desc">검증된 강사 매칭과 함께 위탁 운영·파견을 진행합니다.</p>
-        </div>
-      </li>
-      <li class="proc-step reveal reveal-delay-3 flex md:flex-col items-start md:items-center gap-5 md:gap-6 md:text-center">
-        <div class="proc-num w-14 h-14 flex-none rounded-2xl flex items-center justify-center text-white text-lg font-extrabold tracking-tight" aria-hidden="true">04</div>
-        <div class="pt-1 md:pt-0">
-          <h3 class="text-lg md:text-xl font-bold text-ink tracking-tight mb-1.5" data-ck="education.process_step4_title">결과 보고</h3>
-          <p class="text-sm md:text-[15px] text-inksoft leading-relaxed md:max-w-[15rem] md:mx-auto" data-ck="education.process_step4_desc">만족도 조사결과, 프로그램 진행 사진, 프로그램 개요 등을 기반으로 결과보고서를 작성하여 전달합니다.</p>
-        </div>
-      </li>
-    </ol>
+    <div class="vb-grid">
+      <article class="reveal vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <p class="vb-num" aria-hidden="true">01</p>
+        <h3 class="vb-name" data-ck="education.values_card1_title">Together</h3>
+        <p class="vb-def" data-ck="values.card1_desc">혼자가 아닌 함께</p>
+        <p class="vb-desc" data-ck="education.values_card1_desc">기관의 일정 · 대상 · 예산 · 공간에 맞춰 프로그램을 골라 구성합니다.</p>
+      </article>
+      <article class="reveal reveal-delay-1 vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <p class="vb-num" aria-hidden="true">02</p>
+        <h3 class="vb-name" data-ck="education.values_card2_title">Trust</h3>
+        <p class="vb-def" data-ck="values.card2_desc">신뢰할 수 있는 연결</p>
+        <p class="vb-desc" data-ck="education.values_card2_desc">국가 공인 · 학회 자격을 갖춘 전문 상담사가 프로그램을 진행합니다.</p>
+      </article>
+      <article class="reveal reveal-delay-2 vb-card feat-card">
+        <div class="vb-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
+        <p class="vb-num" aria-hidden="true">03</p>
+        <h3 class="vb-name" data-ck="education.values_card3_title">Growth</h3>
+        <p class="vb-def" data-ck="values.card3_desc">지속 가능한 성장</p>
+        <p class="vb-desc" data-ck="education.values_card3_desc">사전 · 사후 검사와 만족도 조사로 효과를 확인하고, 결과보고서를 다음 운영에 반영합니다.</p>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -248,6 +243,83 @@
         <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="education.fields_tag4">조직문화 진단</li>
         <li class="accent-chip px-5 py-2.5 rounded-full text-sm md:text-[15px] font-semibold" data-ck="education.fields_tag5">심리검사</li>
     </ul>
+  </div>
+</section>
+
+<!-- GUIDE (운영 안내 공통 컴포넌트 · 교육 p12 / 공연 p30) -->
+<section id="guide" class="relative px-6 py-24 md:py-36" style="background: var(--accent-softer);" data-admin-group="운영 안내">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-12 md:mb-16">
+      <p class="text-xs md:text-sm font-bold tracking-[0.2em] accent-text uppercase mb-4" data-ck="education.guide_eyebrow">Guide</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink tracking-tight leading-snug break-keep">
+        <span class="block" data-ck="education.guide_headline_1">기관에 맞춰 운영하고,</span>
+        <span class="block"><span data-ck="education.guide_headline_2">필요한 프로그램은</span> <span class="accent-text" data-ck="education.guide_headline_highlight">새로 만듭니다.</span></span>
+      </h2>
+      <p class="mt-5 text-[15px] md:text-base text-inksoft leading-relaxed break-keep" data-ck="education.guide_subcopy">진행 방식부터 신규 프로그램 개발까지, 기관 니즈와 특성에 맞춰 진행합니다.</p>
+    </div>
+    <div class="gd-grid">
+      <article class="reveal gd-card feat-card">
+        <div class="gd-head">
+          <div class="gd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <p class="gd-label" data-ck="education.guide_card1_label">운영 안내</p>
+        </div>
+        <div class="gd-body">
+          <h3 class="gd-title" data-ck="education.guide_card1_title">진행 방식 및 시간 협의</h3>
+          <ul class="gd-chips" aria-label="키워드" data-ck="education.guide_card1_tags" data-ck-list>
+            <li>진행 방식</li>
+            <li>소요 시간</li>
+            <li>투입 인원</li>
+            <li>교구재</li>
+          </ul>
+          <p class="gd-desc" data-ck="education.guide_card1_desc">모든 프로그램의 진행 방식, 소요 시간, 투입 인원, 교구재 구성은 기관의 일정과 환경에 맞춰 유연하게 협의해 조율합니다.</p>
+        </div>
+      </article>
+      <article class="reveal reveal-delay-1 gd-card feat-card">
+        <div class="gd-head">
+          <div class="gd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <p class="gd-label" data-ck="education.guide_card2_label">운영 안내</p>
+        </div>
+        <div class="gd-body">
+          <h3 class="gd-title" data-ck="education.guide_card2_title">기관 맞춤형 운영</h3>
+          <ul class="gd-chips" aria-label="키워드" data-ck="education.guide_card2_tags" data-ck-list>
+            <li>대상 특성</li>
+            <li>연령대</li>
+            <li>예산</li>
+            <li>공간</li>
+          </ul>
+          <p class="gd-desc" data-ck="education.guide_card2_desc">참여 대상자의 특성, 연령대, 예산 규모, 공간 조건에 최적화된 맞춤형 커리큘럼으로 유연하게 운영합니다.</p>
+        </div>
+      </article>
+      <article class="reveal reveal-delay-2 gd-card feat-card">
+        <div class="gd-head">
+          <div class="gd-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBFAF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></div>
+          <p class="gd-label" data-ck="education.guide_card3_label">맞춤형 프로그램 개발 및 제안</p>
+        </div>
+        <div class="gd-body">
+          <h3 class="gd-title" data-ck="education.guide_card3_title">신규 프로그램 개발</h3>
+          <ul class="gd-chips" aria-label="키워드" data-ck="education.guide_card3_tags" data-ck-list>
+            <li>기관 니즈</li>
+            <li>기획</li>
+            <li>개발</li>
+          </ul>
+          <p class="gd-desc" data-ck="education.guide_card3_desc">위더스온은 기관의 니즈에 부합하는 새로운 프로그램을 기획·개발할 수 있는 전문 역량을 갖추고 있습니다.</p>
+        </div>
+      </article>
+    </div>
+    <div class="reveal gd-band mt-6 md:mt-8">
+      <div class="gd-band-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <div class="gd-band-body">
+        <p class="gd-band-label" data-ck="education.guide_band_label">맞춤형 프로그램 개발 및 제안</p>
+        <p class="gd-band-title" data-ck="education.guide_band_title">상시 문의 및 제안 환영</p>
+        <p class="gd-band-desc" data-ck="education.guide_band_desc">기관에서 특별히 필요로 하는 주제나 운영하고 싶은 프로그램이 있으면 언제든지 문의해 주십시오. 현장 특성에 맞춰 해당 기관만을 위한 맞춤형 프로그램을 새롭게 개발하고 운영합니다.</p>
+        <ul class="gd-chips gd-chips-band" aria-label="키워드" data-ck="education.guide_band_tags" data-ck-list>
+          <li>기관 일정과 현장에 맞춘 유연한 조율</li>
+          <li>최적 커리큘럼</li>
+          <li>신규 프로그램 개발</li>
+        </ul>
+      </div>
+      <a href="/?inquiry=education#contact" class="btn btn-primary gd-band-btn px-6 py-3 text-[15px]"><span data-ck="education.guide_band_button">교육 문의하기</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </div>
 </section>
 
