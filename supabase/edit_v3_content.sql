@@ -28,7 +28,20 @@ on conflict (key) do update
   set value = excluded.value,
       updated_at = excluded.updated_at;
 
+-- [Phase 5] 훌터 OVERVIEW 본문 첫 문단 교체 (5-1, 'B2B 및 B2C' 삭제 · 둘째 문단은 관리자 저장 문구 그대로)
+insert into site_content (key, value, updated_at) values
+  ('platform.overview_desc',
+   '상담센터 · 발달센터 · 정신건강의학과 등 전문 도움이 필요한 이들의 바우처 탐색을 지원하고, 검증된 맞춤형 전문가를 연결하는 매칭 서비스를 제공합니다.
+
+다양한 바우처 혜택과 맞춤형 조건 필터링으로,
+누구나 안심하고 전문가를 만날 수 있는 평등한 기회를 제공합니다.',
+   now())
+on conflict (key) do update
+  set value = excluded.value,
+      updated_at = excluded.updated_at;
+
 -- 확인용
 -- select key, value from site_content
 --  where key in ('business.card2_title','business.card2_subtitle','contact.subcopy_1',
---                'business.card2_tag1','business.card2_tag2','business.card2_tag3');
+--                'business.card2_tag1','business.card2_tag2','business.card2_tag3',
+--                'platform.overview_desc');

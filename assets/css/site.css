@@ -360,6 +360,40 @@ body[data-accent="mix"] .vb-icon { background: linear-gradient(135deg, #EFA35C, 
   .gd-band-btn { align-self: center; }
 }
 
+/* ---------- 훌터 WHY HOOLTER: 기존 방식 → 훌터 비교 (소개서 p36) ---------- */
+.why-cmp { display: grid; gap: 0.75rem; }
+.why-card { display: flex; flex-direction: column; padding: 1.75rem; border-radius: 1.5rem; }
+.why-a { background: #EFF0EA; color: #2A2B1E; }
+.why-b { background: linear-gradient(135deg, #A2AD24 0%, #7C8620 55%, #5E661A 100%); color: #FFFFFF; box-shadow: 0 20px 44px -16px rgba(94,102,26,0.55); }
+.why-k { font-size: 0.8125rem; font-weight: 800; letter-spacing: 0.04em; margin-bottom: 0.9rem; }
+.why-a .why-k { color: #5C6653; }
+.why-b .why-k { color: rgba(255,255,255,0.85); }
+.why-steps { display: flex; flex-direction: column; align-items: flex-start; }
+.why-steps > li { display: inline-flex; align-items: center; min-height: 2.6rem; padding: 0.45rem 1.1rem; border-radius: 9999px; font-size: 0.9375rem; font-weight: 600; line-height: 1.35; word-break: keep-all; }
+.why-steps > li + li { margin-top: 1.25rem; position: relative; }
+.why-steps > li + li::before { content: ''; position: absolute; left: 1.4rem; top: -1.25rem; width: 2px; height: 1.25rem; }
+.why-a .why-steps > li { background: #E1E3DA; color: #4A5240; }
+.why-a .why-steps > li + li::before { background: rgba(38,48,28,0.18); }
+.why-b .why-steps > li { background: rgba(255,255,255,0.22); color: #FFFFFF; }
+.why-b .why-steps > li + li::before { background: rgba(255,255,255,0.45); }
+.why-hr { height: 1px; margin: 1.5rem 0 1.25rem; }
+.why-a .why-hr { background: rgba(38,48,28,0.12); }
+.why-b .why-hr { background: rgba(255,255,255,0.3); }
+.why-desc { font-size: 0.9375rem; line-height: 1.7; word-break: keep-all; }
+.why-a .why-desc { color: #5C6653; }
+.why-b .why-desc { color: #FFFFFF; font-weight: 700; }
+/* 가운데 원형 화살표: 모바일은 아래 방향 */
+.why-arrow { justify-self: center; width: 3.25rem; height: 3.25rem; margin: -1.4rem 0; border-radius: 9999px; background: #FFFFFF; border: 1px solid rgba(38,48,28,0.10); box-shadow: 0 6px 16px -6px rgba(42,43,30,0.18); display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; }
+.why-arrow svg { transform: rotate(90deg); }
+@media (min-width: 768px) {
+  .why-cmp { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: stretch; }
+  .why-card { padding: 2.5rem; }
+  .why-arrow { align-self: center; margin: 0 -1.4rem; }
+  .why-arrow svg { transform: none; }
+  .why-steps > li { font-size: 1rem; }
+  .why-desc { font-size: 1rem; }
+}
+
 /* ---------- 공연 KEY FEATURES: 줄(프로그램) 2개 × 카드 3장 ---------- */
 .kf-rows { display: grid; gap: 2.5rem; }
 .kf-row { display: grid; gap: 1.25rem; }
