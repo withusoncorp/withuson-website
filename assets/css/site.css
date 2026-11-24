@@ -360,6 +360,32 @@ body[data-accent="mix"] .vb-icon { background: linear-gradient(135deg, #EFA35C, 
   .gd-band-btn { align-self: center; }
 }
 
+/* ---------- 공연 KEY FEATURES: 줄(프로그램) 2개 × 카드 3장 ---------- */
+.kf-rows { display: grid; gap: 2.5rem; }
+.kf-row { display: grid; gap: 1.25rem; }
+.kf-warm { --kf: #EFA35C; --kf-dark: #C97835; --kf-darker: #96521E; --kf-soft: #FCE7C8; }
+.kf-brand { --kf: #A2AD24; --kf-dark: #7C8620; --kf-darker: #5E661A; --kf-soft: #EEF0D2; }
+.kf-lead { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+.kf-target { padding: 0.3rem 0.8rem; border-radius: 9999px; background: var(--kf-soft); color: var(--kf-darker); font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.35rem; }
+.kf-name { font-size: 1.5rem; font-weight: 800; color: #2A2B1E; letter-spacing: -0.02em; line-height: 1.2; }
+.kf-sub { font-size: 0.9375rem; color: #5C6653; word-break: keep-all; }
+.kf-cards { display: grid; gap: 1rem; }
+.kf-card { background: #FFFFFF; border: 1px solid rgba(38,48,28,0.10); border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 4px 16px -6px rgba(42,43,30,0.08); }
+.kf-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
+.kf-icon { width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--kf), var(--kf-dark)); }
+.kf-num { font-size: 1.5rem; font-weight: 800; color: var(--kf-dark); opacity: 0.35; letter-spacing: -0.02em; }
+.kf-title { font-size: 1.0625rem; font-weight: 800; color: #2A2B1E; letter-spacing: -0.02em; margin-bottom: 0.45rem; word-break: keep-all; }
+.kf-desc { font-size: 0.875rem; line-height: 1.65; color: #5C6653; word-break: keep-all; }
+/* 768px: 머리말 위 · 카드 3열 */
+@media (min-width: 768px) { .kf-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } .kf-title { font-size: 1.125rem; } .kf-desc { font-size: 0.9375rem; } }
+/* 1024px 이상: 머리말 1열 + 카드 3열 */
+@media (min-width: 1024px) {
+  .kf-rows { gap: 1.5rem; }
+  .kf-row { grid-template-columns: 13rem minmax(0, 1fr); gap: 1.5rem; align-items: stretch; }
+  .kf-lead { justify-content: center; padding-right: 0.5rem; }
+  .kf-name { font-size: 1.625rem; }
+}
+
 /* ---------- 교육 FIELDS: 카테고리 카드 (리플렛 ④ · 색은 상단 띠와 불릿에만) ---------- */
 .fc-cards { display: grid; gap: 1.25rem; }
 /* 데스크톱: 진단 | 심리상담 한 줄, 힐링(3열 불릿)은 아래 전체 폭 */

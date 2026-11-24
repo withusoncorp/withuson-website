@@ -49,7 +49,7 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 1 | `business.card4_desc` | 있음 (11-23 관리자) |
 | 2 | `education.process_eyebrow`, `education.process_headline`, `education.process_step1~4_title/_desc` (교육 PROCESS 4단계) | 없음 |
 | 2 | `performance.process_eyebrow`, `performance.process_headline`, `performance.proc_subcopy`, `performance.proc_step1~5_title/_items`, `performance.proc_output_label`, `performance.proc_output_tag1~3` (공연 PROCESS 5단계 + 결과물) | 없음 |
-| 2 | `performance.features_eyebrow/_headline/_subcopy`, `performance.feature1~3_title/_desc` (옛 KEY FEATURES 안의 Together·Trust·Growth → `performance.values_*`로 이동) | 없음 |
+| 2 | `performance.feature1~3_title/_desc` (옛 KEY FEATURES 안의 Together·Trust·Growth → `performance.values_*`로 이동). `performance.features_eyebrow/_headline/_subcopy`는 Phase 4 새 KEY FEATURES에서 다시 씀 (`_subcopy` 문구는 소개서 p29로 교체) | 없음 |
 | 2 | `platform.process_eyebrow`, `platform.process_headline`, `platform.process_step1~3_title/_desc` (→ `platform.values_*`, 제목은 Phase 5 WHY HOOLTER) | 없음 |
 | 2 | `press.process_eyebrow`, `press.process_headline`, `press.process_step1~3_title/_desc` (→ `press.values_*`) | 없음 |
 | 3 | `education.fields_tag1~5` (교육 분야 태그 5개: 심리상담 교육 · 문화예술 교육 · 힐링 프로그램 · 조직문화 진단 · 심리검사) | 없음 |
@@ -68,3 +68,5 @@ DB 79행 중 62행은 HTML과 같고, **10행이 다르다.** 공통 키(header/
 | 2 | `{education,performance}.guide_band_label/_title/_desc/_button`, `education.guide_band_tags` | GUIDE 안내 띠 |
 | 3 | `education.cat1~3_title/_desc/_items/_plus` | 교육 FIELDS 카테고리 카드 (`_items`는 한 줄에 프로그램 하나) |
 | 3 | `education.fields_experts_title`, `education.fields_experts_tags` | 전문가 칩 띠 (칩 10개) |
+| 4 | `performance.kf_row1~2_target/_name/_sub` | 공연 KEY FEATURES 줄 머리말 (대상 칩 · 프로그램명 · 부제) |
+| 4 | `performance.kf1~2_1~3_title/_desc` | 공연 KEY FEATURES 카드 6장 (줄_번호) |
