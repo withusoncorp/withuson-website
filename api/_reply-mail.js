@@ -54,9 +54,9 @@ function buildReplyMail(row, body) {
   </td></tr>
   <tr><td style="padding:28px 32px 8px;">
     <p style="margin:0 0 18px;font-size:18px;font-weight:700;color:#26301C;">문의하신 내용에 대한 답변입니다</p>
-    <p style="margin:0 0 18px;font-size:15px;line-height:1.75;">안녕하세요, ${escape(row.name)}님.<br>위더스온입니다.</p>
+    <p style="margin:0 0 18px;font-size:15px;line-height:1.75;">안녕하세요, ${escape(row.name)}님.<br>문의 주셔서 감사합니다.</p>
     <div style="font-size:15px;line-height:1.8;color:#26301C;">${paragraphs(body)}</div>
-    <p style="margin:24px 0 0;font-size:15px;line-height:1.75;">감사합니다.<br>위더스온 드림</p>
+    <p style="margin:24px 0 0;font-size:15px;line-height:1.75;">감사합니다.<br>위더스온 대표 신용욱 드림</p>
   </td></tr>
   <tr><td style="padding:24px 32px 8px;">
     <div style="background:#F8F9EC;border-radius:12px;padding:16px 18px;">
@@ -78,7 +78,7 @@ function buildReplyMail(row, body) {
 </table>
 </body></html>`;
 
-  const text = `안녕하세요, ${row.name}님.\n위더스온입니다.\n\n${body}\n\n감사합니다.\n위더스온 드림\n\n` +
+  const text = `안녕하세요, ${row.name}님.\n문의 주셔서 감사합니다.\n\n${body}\n\n감사합니다.\n위더스온 대표 신용욱 드림\n\n` +
     `-- 보내주신 문의 (${typeLabel} · ${formatKST(row.created_at)}) --\n${quoted}\n\n` +
     `${COMPANY.name} · T ${COMPANY.tel} · ${COMPANY.email}\n${COMPANY.site}`;
 
