@@ -48,6 +48,12 @@
   .mini-btn:hover:not(:disabled) { background: #EEF0D2; }
   .mini-btn:active:not(:disabled) { transform: scale(.94); }
   .mini-btn:disabled { opacity: .35; cursor: not-allowed; }
+  .act-btn { transition: background-color .15s ease, color .15s ease, transform .15s ease; }
+  .act-btn:hover:not(:disabled) { background: #EEF0D2; }
+  .act-btn:active:not(:disabled) { transform: scale(.95); }
+  .act-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.35); }
+  .act-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .act-del:hover:not(:disabled) { background: #FDECEC; color: #B42318; }
   .mini-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(162,173,36,0.35); }
 </style>
 </head>
@@ -123,7 +129,7 @@
             <th class="px-4 py-3 font-semibold">유형</th>
             <th class="px-4 py-3 font-semibold">접수일</th>
             <th class="px-4 py-3 font-semibold">상태</th>
-            <th class="px-4 py-3 font-semibold">상세</th>
+            <th class="px-4 py-3 font-semibold">관리</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -180,6 +186,41 @@
       <button id="closeModalBtn" class="text-inksoft text-xl leading-none">&times;</button>
     </div>
     <div id="detailContent" class="space-y-3 text-sm"></div>
+  </div>
+</div>
+
+<!-- 답변 모달: 작성 → 미리보기 → 발송 -->
+<div id="replyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6" style="background:rgba(26,34,18,0.5);" role="dialog" aria-modal="true" aria-labelledby="replyTitle">
+  <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 max-h-[90vh] overflow-y-auto">
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <h2 id="replyTitle" class="text-lg font-bold text-ink">문의 답변</h2>
+        <p id="replyTo" class="text-xs text-inksoft mt-1"></p>
+      </div>
+      <button type="button" id="replyClose" class="text-inksoft text-xl leading-none" aria-label="닫기">&times;</button>
+    </div>
+    <details class="mb-4 rounded-xl bg-brand-50 px-4 py-3 text-sm" open>
+      <summary class="font-bold cursor-pointer select-none">보내주신 문의</summary>
+      <p id="replyOriginal" class="whitespace-pre-wrap mt-2 text-inksoft"></p>
+    </details>
+    <div id="replyHistory" class="mb-4"></div>
+    <div id="replyEdit">
+      <label for="replyBody" class="block text-sm font-bold text-ink mb-2">답변 내용</label>
+      <p class="text-xs text-inksoft mb-2">'안녕하세요, ○○님. 위더스온입니다.' 인사와 '감사합니다. 위더스온 드림' 맺음말은 자동으로 들어갑니다. 본문만 작성하세요.</p>
+      <textarea id="replyBody" rows="9" maxlength="5000" class="field w-full rounded-xl border border-brand-100 px-4 py-3 text-sm leading-relaxed" placeholder="답변 본문을 입력하세요."></textarea>
+      <p class="text-right text-xs text-inksoft mt-1"><span id="replyCount">0</span> / 5000</p>
+    </div>
+    <div id="replyPreviewWrap" class="hidden">
+      <p class="text-sm font-bold text-ink mb-1">미리보기 <span class="font-normal text-inksoft">— 고객에게 이대로 발송됩니다</span></p>
+      <p id="replyMeta" class="text-xs text-inksoft mb-2"></p>
+      <iframe id="replyPreview" title="답변 메일 미리보기" sandbox="" class="w-full h-[26rem] rounded-xl border border-brand-100 bg-white"></iframe>
+    </div>
+    <p id="replyError" class="hidden mt-3 text-sm font-semibold text-red-600"></p>
+    <div class="flex flex-wrap justify-end gap-2 mt-5">
+      <button type="button" id="replyBack" class="hidden btn text-sm font-semibold px-4 py-2 rounded-full border border-brand-100">다시 수정</button>
+      <button type="button" id="replyPreviewBtn" class="btn text-sm font-bold px-5 py-2 rounded-full bg-brand-dark text-white">미리보기</button>
+      <button type="button" id="replySend" class="hidden btn text-sm font-bold px-5 py-2 rounded-full bg-brand-dark text-white">이대로 발송</button>
+    </div>
   </div>
 </div>
 
@@ -321,8 +362,13 @@
         '<td class="px-4 py-3">' + escapeHtml(row.email) + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</td>' +
         '<td class="px-4 py-3 text-inksoft">' + formatDate(row.created_at) + '</td>' +
-        '<td class="px-4 py-3"><button data-id="' + row.id + '" data-status="' + row.status + '" class="toggle-status-btn px-3 py-1 rounded-full text-xs font-bold ' + statusClass + '">' + statusLabel + '</button></td>' +
-        '<td class="px-4 py-3"><button data-id="' + row.id + '" class="view-detail-btn text-brand-dark font-semibold text-xs">보기</button></td>';
+        '<td class="px-4 py-3"><button data-id="' + row.id + '" data-status="' + row.status + '" class="toggle-status-btn px-3 py-1 rounded-full text-xs font-bold ' + statusClass + '">' + statusLabel + '</button>' +
+          (row.replied_at ? '<p class="mt-1 text-[11px] font-semibold text-brand-dark whitespace-nowrap">답변 ' + repliesOf(row).length + '회 · ' + formatDate(row.replied_at).slice(5, 10) + '</p>' : '') + '</td>' +
+        '<td class="px-4 py-3 whitespace-nowrap">' +
+          '<button data-id="' + row.id + '" class="view-detail-btn act-btn text-brand-dark font-semibold text-xs px-2.5 py-1 rounded-full">보기</button>' +
+          '<button data-id="' + row.id + '" class="reply-btn act-btn text-brand-dark font-semibold text-xs px-2.5 py-1 rounded-full">답변</button>' +
+          '<button data-id="' + row.id + '" class="delete-btn act-btn act-del text-inksoft font-semibold text-xs px-2.5 py-1 rounded-full">삭제</button>' +
+        '</td>';
       tableBody.appendChild(tr);
     });
 
@@ -354,6 +400,18 @@
         if (row) showDetail(row);
       });
     });
+    document.querySelectorAll('.reply-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var row = allRows.find(function (r) { return String(r.id) === btn.getAttribute('data-id'); });
+        if (row) openReply(row);
+      });
+    });
+    document.querySelectorAll('.delete-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var row = allRows.find(function (r) { return String(r.id) === btn.getAttribute('data-id'); });
+        if (row) deleteInquiry(row, btn);
+      });
+    });
   }
 
   function escapeHtml(s) {
@@ -372,7 +430,7 @@
       '<p><span class="font-bold">접수일</span> ' + formatDate(row.created_at) + '</p>' +
       '<p><span class="font-bold">개인정보 동의</span> ' + (row.privacy_agreed ? '동의함 (' + formatDate(row.privacy_agreed_at || row.created_at) + ')' : '<span class="text-inkfaint">기록 없음 (동의 항목 도입 전 문의)</span>') + '</p>' +
       '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>' +
-      renderAttachments(row);
+      renderAttachments(row) + renderReplies(row);
     detailModal.classList.remove('hidden');
   }
 
@@ -425,6 +483,118 @@
   });
   document.getElementById('closeModalBtn').addEventListener('click', function () { detailModal.classList.add('hidden'); });
   detailModal.addEventListener('click', function (e) { if (e.target === detailModal) detailModal.classList.add('hidden'); });
+
+  // ===== 답변 · 삭제 =====
+  function repliesOf(row) { return Array.isArray(row.replies) ? row.replies : []; }
+  function renderReplies(row) {
+    var list = repliesOf(row);
+    if (!list.length) return '';
+    return '<div><p class="font-bold mb-2">보낸 답변 (' + list.length + ')</p><ul class="space-y-2">' +
+      list.slice().reverse().map(function (r) {
+        return '<li class="rounded-xl border border-brand-100 px-4 py-3"><p class="text-xs font-semibold text-brand-dark mb-1">' + formatDate(r.sent_at) + ' · ' + escapeHtml(r.to) + '</p>' +
+          '<p class="whitespace-pre-wrap text-ink">' + escapeHtml(r.body) + '</p></li>';
+      }).join('') + '</ul></div>';
+  }
+
+  var replyModal = document.getElementById('replyModal');
+  var replyBody = document.getElementById('replyBody');
+  var replyState = { row: null, previewedText: null, sending: false };
+  function setReplyStep(step) { // 'edit' | 'preview'
+    var preview = step === 'preview';
+    document.getElementById('replyEdit').classList.toggle('hidden', preview);
+    document.getElementById('replyPreviewWrap').classList.toggle('hidden', !preview);
+    document.getElementById('replyPreviewBtn').classList.toggle('hidden', preview);
+    document.getElementById('replyBack').classList.toggle('hidden', !preview);
+    document.getElementById('replySend').classList.toggle('hidden', !preview);
+  }
+  function replyError(msg) {
+    var el = document.getElementById('replyError');
+    el.textContent = msg || '';
+    el.classList.toggle('hidden', !msg);
+  }
+  function openReply(row) {
+    replyState = { row: row, previewedText: null, sending: false };
+    document.getElementById('replyTo').textContent = '받는 사람: ' + row.name + ' <' + row.email + '> · ' + (INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + ' · ' + formatDate(row.created_at);
+    document.getElementById('replyOriginal').textContent = row.message || '';
+    document.getElementById('replyHistory').innerHTML = renderReplies(row);
+    replyBody.value = '';
+    document.getElementById('replyCount').textContent = '0';
+    replyError('');
+    setReplyStep('edit');
+    replyModal.classList.remove('hidden');
+    replyBody.focus();
+  }
+  function closeReply() {
+    if (replyState.sending) return;
+    if (replyBody.value.trim() && !confirm('작성 중인 답변이 있습니다. 닫을까요?')) return;
+    replyModal.classList.add('hidden');
+  }
+  replyBody.addEventListener('input', function () { document.getElementById('replyCount').textContent = replyBody.value.length; replyError(''); });
+  document.getElementById('replyClose').addEventListener('click', closeReply);
+  replyModal.addEventListener('click', function (e) { if (e.target === replyModal) closeReply(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !replyModal.classList.contains('hidden')) closeReply(); });
+  document.getElementById('replyBack').addEventListener('click', function () { replyError(''); setReplyStep('edit'); replyBody.focus(); });
+
+  async function replyRequest(action) {
+    var res = await apiRequest('/api/admin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: action, id: replyState.row.id, body: replyBody.value }),
+    });
+    var data = await res.json().catch(function () { return {}; });
+    if (!res.ok) throw new Error((data && data.error) || '요청 실패 (' + res.status + ')');
+    return data;
+  }
+  document.getElementById('replyPreviewBtn').addEventListener('click', async function () {
+    var btn = this;
+    replyError('');
+    if (!replyBody.value.trim()) { replyError('답변 내용을 입력해 주세요.'); replyBody.focus(); return; }
+    btn.disabled = true;
+    try {
+      var data = await replyRequest('reply-preview');
+      document.getElementById('replyMeta').textContent = '제목: ' + data.subject + ' · 받는 사람: ' + data.to + ' · 회신 주소: ' + data.replyTo;
+      document.getElementById('replyPreview').srcdoc = data.html;
+      replyState.previewedText = replyBody.value;
+      setReplyStep('preview');
+    } catch (err) { replyError(err.message); }
+    btn.disabled = false;
+  });
+  document.getElementById('replySend').addEventListener('click', async function () {
+    var btn = this;
+    if (replyState.previewedText !== replyBody.value) { setReplyStep('edit'); replyError('내용이 바뀌었습니다. 미리보기를 다시 확인해 주세요.'); return; }
+    if (!confirm(replyState.row.email + ' 로 답변 메일을 보냅니다. 발송 후에는 취소할 수 없습니다.')) return;
+    btn.disabled = true; replyState.sending = true; btn.textContent = '보내는 중...';
+    try {
+      var data = await replyRequest('reply');
+      replyState.sending = false;
+      replyBody.value = '';
+      replyModal.classList.add('hidden');
+      alert(data.recorded === false ? data.warning : '답변을 보냈습니다. 상태가 \'완료\'로 바뀌었습니다.');
+      loadConsultations();
+    } catch (err) { replyError(err.message); }
+    replyState.sending = false; btn.disabled = false; btn.textContent = '이대로 발송';
+  });
+
+  async function deleteInquiry(row, btn) {
+    var n = attachmentsOf(row).length;
+    var who = row.name + ' (' + formatDate(row.created_at) + ', ' + (INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + ')';
+    if (!confirm('이 문의를 삭제할까요?\n\n' + who + (n ? '\n첨부 파일 ' + n + '개도 함께 삭제됩니다.' : ''))) return;
+    if (!confirm('삭제하면 되돌릴 수 없습니다. 정말 삭제할까요?')) return;
+    btn.disabled = true;
+    try {
+      var res = await apiRequest('/api/admin?id=' + encodeURIComponent(row.id), {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: row.id }),
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error((data && data.error) || '삭제 실패 (' + res.status + ')');
+      loadConsultations();
+    } catch (err) {
+      alert(err.message);
+      btn.disabled = false;
+    }
+  }
 
   // ===== Tabs =====
   var PANELS = { inquiry: 'inquiryPanel', content: 'contentPanel', images: 'imagesPanel', gallery: 'galleryPanel' };
