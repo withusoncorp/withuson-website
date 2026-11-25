@@ -1,0 +1,8 @@
+# 작업 문서는 배포하지 않는다 (공개 URL로 노출 방지)
+edit/
+assets/docs/
+# DB 설정 SQL (DB 구조·보안 정책 노출 방지 — Supabase SQL Editor 에서만 사용)
+supabase/
+# 작업용 문서 (원고·지침)
+*.md
+text.txt

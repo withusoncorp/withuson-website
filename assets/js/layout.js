@@ -48,7 +48,30 @@
   }
   function childActive(c) { return isPageLink(c.href) && normPath(c.href) === current; }
 
-  var CHEVRON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  /* 라벨 전환(hoverLabel / activeLabel) — site-config.js 참고 */
+  function swapName(item) {
+    var alt = item.hoverLabel || item.activeLabel;
+    return alt && alt !== item.label ? item.label + ' (' + alt + ')' : '';
+  }
+  function navLabelHtml(item, active) {
+    var alt = item.hoverLabel || item.activeLabel;
+    if (!alt) return esc(item.label);
+    var showAlt = active && item.activeLabel;
+    // 두 라벨을 같은 칸에 겹쳐 두어 폭을 긴 쪽에 고정하고, opacity/transform 으로만 교차 전환
+    return '<span class="nav-swap' + (showAlt ? ' show-alt' : '') + (item.hoverLabel ? ' has-hover' : '') + '" aria-hidden="true">' +
+      '<span class="nav-swap-a">' + esc(item.label) + '</span>' +
+      '<span class="nav-swap-b">' + esc(showAlt ? item.activeLabel : alt) + '</span>' +
+    '</span>';
+  }
+  function navAria(item) {
+    var name = swapName(item);
+    return name ? ' aria-label="' + esc(name) + '"' : '';
+  }
+  function mobileLabel(item, active) {
+    return active && item.activeLabel ? item.activeLabel : item.label;
+  }
+
+  var CHEVRON ='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 
   /* ---------- Header ---------- */
   function renderHeader() {
@@ -58,7 +81,7 @@
       var linkCls = 'nav-link whitespace-nowrap hover:text-ink' + (active ? ' is-active' : '');
       var kids = item.children || [];
       if (!kids.length) {
-        return '<li class="nav-item"><a href="' + esc(item.href) + '" class="' + linkCls + '"' + aria + '>' + esc(item.label) + '</a></li>';
+        return '<li class="nav-item"><a href="' + esc(item.href) + '" class="' + linkCls + '"' + aria + navAria(item) + '>' + navLabelHtml(item, active) + '</a></li>';
       }
       var panelId = 'dd-panel-' + i;
       var kidsHtml = kids.map(function (c) {
@@ -68,7 +91,7 @@
       return '' +
         '<li class="nav-item relative" data-dd>' +
           '<div class="nav-row flex items-center gap-1">' +
-            '<a href="' + esc(item.href) + '" class="' + linkCls + '"' + aria + '>' + esc(item.label) + '</a>' +
+            '<a href="' + esc(item.href) + '" class="' + linkCls + '"' + aria + navAria(item) + '>' + navLabelHtml(item, active) + '</a>' +
             '<button type="button" class="nav-toggle w-6 h-6 flex items-center justify-center rounded-md text-inkfaint" aria-expanded="false" aria-controls="' + panelId + '" aria-label="' + esc(item.label) + ' 하위 메뉴 열기">' + CHEVRON + '</button>' +
           '</div>' +
           '<div class="dd-panel" id="' + panelId + '">' +
@@ -164,7 +187,7 @@
       var kids = item.children || [];
       var base = 'm-link flex items-center w-full px-4 py-3.5 rounded-2xl text-[17px] font-semibold text-ink';
       if (!kids.length) {
-        return '<li><a href="' + esc(item.href) + '" class="' + base + (active ? ' is-active' : '') + '"' + (active ? ' aria-current="page"' : '') + '>' + esc(item.label) + '</a></li>';
+        return '<li><a href="' + esc(item.href) + '" class="' + base + (active ? ' is-active' : '') + '"' + (active ? ' aria-current="page"' : '') + navAria(item) + '>' + esc(mobileLabel(item, active)) + '</a></li>';
       }
       var subId = 'm-sub-' + i;
       var kidsHtml = '<li><a href="' + esc(item.href) + '" class="m-link block px-4 py-2.5 rounded-xl text-[15px] text-inksoft' + (normPath(item.href) === current ? ' is-active' : '') + '">' + esc(item.label) + ' 전체 보기</a></li>' +
@@ -175,7 +198,7 @@
       return '' +
         '<li>' +
           '<button type="button" class="m-acc-btn flex items-center justify-between w-full px-4 py-3.5 rounded-2xl text-[17px] font-semibold text-left ' + (active ? 'text-brand-darker' : 'text-ink') + '" aria-expanded="false" aria-controls="' + subId + '">' +
-            '<span>' + esc(item.label) + '</span>' + CHEVRON +
+            '<span>' + esc(mobileLabel(item, active)) + '</span>' + CHEVRON +
           '</button>' +
           '<div class="m-sub" id="' + subId + '"><div><ul class="pl-3 pb-2 border-l-2 border-brand-100 ml-4">' + kidsHtml + '</ul></div></div>' +
         '</li>';
@@ -257,6 +280,10 @@
   }
 
   /* ---------- Footer ---------- */
+  /* 훌터 · 마인드 투데이 로고를 단색으로 변환한 경로 (원본: assets/img/footer/*.svg) */
+  var ICON_PATH_HOOLTER = 'M20.75,23.88 20.31 23.88 20.06 23.78 19.86 23.78 18.62 23.38 17.98 23.08 17.18 22.59 16.69 22.19 15.87 21.27 15.27 20.18 14.93 19.04 14.88 18.45 14.83 18.4 14.83 16.76 15.07 15.57 15.07 15.22 14.8 15.0 14.65 15.0 14.36 15.15 6.17 19.71 5.38 20.11 4.93 20.26 4.49 20.36 3.69 20.36 3.3 20.26 2.6 19.86 2.18 19.44 1.93 18.99 1.83 18.64 1.83 18.05 2.13 17.31 2.55 16.83 3.25 16.44 3.84 16.29 4.98 16.14 6.42 15.84 7.56 15.69 7.86 15.6 8.11 15.6 9.0 15.4 9.25 15.4 10.44 15.15 11.28 15.05 11.58 14.95 12.42 14.85 12.72 14.75 13.56 14.65 13.86 14.55 14.11 14.55 14.4 14.45 14.53 14.23 14.48 13.93 14.21 13.76 11.98 13.41 10.79 13.17 10.54 13.17 9.64 12.97 9.4 12.97 9.1 12.87 8.26 12.77 7.96 12.67 6.82 12.52 6.52 12.42 5.68 12.32 5.38 12.22 4.24 12.07 3.94 11.98 3.69 11.98 2.9 11.68 2.33 11.21 1.93 10.51 1.88 9.57 2.18 8.88 2.7 8.36 3.35 8.01 3.74 7.91 4.64 7.91 5.03 8.01 14.6 13.41 14.95 13.41 15.12 13.24 15.17 13.04 15.02 12.69 10.86 5.36 9.72 3.22 9.62 2.78 9.62 2.03 9.82 1.39 10.12 0.89 10.59 0.42 11.03 0.17 11.38 0.07 11.93 0.07 12.32 0.17 13.02 0.62 13.29 0.94 13.54 1.39 13.74 2.18 13.83 3.02 13.93 3.32 14.03 4.17 14.13 4.46 14.28 5.6 14.53 6.79 14.53 7.04 14.63 7.34 14.98 9.62 15.07 9.92 15.22 11.06 15.32 11.36 15.47 12.5 15.57 12.79 15.79 12.97 16.04 12.92 16.21 12.69 16.31 11.85 16.41 11.55 16.56 10.41 16.86 8.98 16.86 8.73 17.11 7.54 17.21 6.69 17.31 6.4 17.45 5.26 17.55 4.96 17.7 3.82 18.0 2.38 18.05 1.83 18.3 1.19 18.5 0.89 18.87 0.52 19.17 0.32 19.71 0.12 20.4 0.12 20.75 0.22 21.25 0.52 21.72 1.04 21.97 1.54 22.12 2.13 22.12 2.78 21.97 3.32 18.25 10.71 18.25 10.81 17.9 11.5 17.26 13.44 17.26 13.64 17.06 14.38 17.06 14.68 16.96 15.07 16.96 15.62 16.91 15.67 16.96 15.72 16.91 15.82 16.91 16.46 16.96 16.56 16.91 16.61 16.96 16.66 16.96 17.16 17.01 17.21 17.06 17.75 17.45 18.99 17.9 19.79 18.77 20.7 19.21 21.0 19.71 21.25 20.31 21.45 20.9 21.55 21.2 21.69 21.57 22.07 21.67 22.26 21.72 22.96 21.57 23.31 21.15 23.73 20.75 23.88Z';
+  var ICON_PATH_MINDTODAY = 'M19.09,5.93 18.2 5.83 17.6 5.58 17.21 5.33 16.69 4.81 16.49 4.51 16.24 4.02 16.09 3.42 16.09 2.53 16.24 1.93 16.64 1.24 17.06 0.77 17.55 0.42 18.0 0.22 18.69 0.07 19.24 0.07 19.98 0.22 20.33 0.37 20.98 0.82 21.3 1.19 21.64 1.79 21.84 2.43 21.84 2.78 21.89 2.83 21.84 2.88 21.89 3.12 21.84 3.17 21.84 3.47 21.69 4.02 21.45 4.51 21.1 4.96 20.43 5.53 20.03 5.73 19.09 5.93ZM5.01,5.93 4.36 5.88 3.87 5.73 3.47 5.53 3.07 5.23 2.6 4.71 2.26 4.07 2.06 3.17 2.11 3.12 2.06 2.98 2.11 2.93 2.11 2.63 2.26 2.03 2.55 1.49 2.85 1.09 3.27 0.72 3.67 0.47 4.46 0.22 5.75 0.27 6.05 0.37 6.74 0.77 7.21 1.24 7.46 1.59 7.76 2.33 7.76 2.58 7.81 2.63 7.81 3.37 7.71 3.82 7.51 4.31 7.21 4.76 6.64 5.33 6.35 5.53 5.65 5.83 5.06 5.88 5.01 5.93ZM20.98,23.88 20.48 23.88 20.43 23.83 19.88 23.78 19.29 23.48 18.72 22.86 18.47 22.17 18.45 12.62 17.9 12.72 17.31 13.02 16.76 13.41 16.04 14.13 15.69 14.58 14.36 16.76 13.56 17.8 12.79 18.42 12.4 18.57 12.1 18.57 12.05 18.62 11.55 18.57 10.81 18.22 9.89 17.26 8.6 15.12 7.66 13.88 6.69 13.07 6.15 12.77 5.7 12.62 5.5 12.62 5.43 12.74 5.43 21.07 5.48 21.17 5.43 21.22 5.43 22.31 5.33 22.61 5.03 23.11 4.76 23.38 4.17 23.73 3.82 23.83 3.52 23.83 3.47 23.88 2.58 23.83 2.23 23.73 1.69 23.43 1.21 22.86 0.97 22.12 0.97 8.43 1.12 7.79 1.46 7.19 1.74 6.92 2.18 6.62 2.88 6.42 3.57 6.42 4.66 6.67 6.0 7.31 7.24 8.26 8.16 9.17 9.2 10.56 9.74 11.5 10.69 12.89 11.21 13.41 11.45 13.56 11.75 13.66 12.2 13.66 12.79 13.36 13.26 12.89 13.76 12.2 14.85 10.41 15.6 9.42 16.91 8.06 17.6 7.51 18.15 7.17 19.09 6.72 20.23 6.42 21.12 6.42 21.67 6.57 22.12 6.82 22.69 7.44 22.93 8.08 22.93 20.48 22.98 20.53 22.98 22.12 22.74 22.86 22.36 23.33 22.02 23.58 21.57 23.78 21.02 23.83 20.98 23.88Z';
+
   function renderFooter() {
     var t = LAYOUT_TEXT;
     var links = NAV.map(function (item) {
@@ -273,7 +300,8 @@
             '<p data-ck="footer.info_line2">' + esc(t['footer.info_line2']) + '</p>' +
             '<p data-ck="footer.info_line3">' + esc(t['footer.info_line3']) + '</p>' +
             '<p data-ck="footer.info_line4">' + esc(t['footer.info_line4']) + '</p>' +
-            '<p class="pt-2 text-white/35" data-ck="footer.copyright">' + esc(t['footer.copyright']) + '</p>' +
+            '<p class="pt-2"><a href="/privacy" class="foot-link font-semibold text-white/75">개인정보처리방침</a></p>' +
+            '<p class="text-white/35" data-ck="footer.copyright">' + esc(t['footer.copyright']) + '</p>' +
           '</div>' +
         '</div>' +
         '<nav aria-label="푸터 메뉴" class="flex justify-center">' +
@@ -285,6 +313,12 @@
           '</a>' +
           '<a href="https://www.instagram.com/withuson.corp/" target="_blank" rel="noopener noreferrer" aria-label="인스타그램" class="icon-btn w-10 h-10 rounded-full glass-dark flex items-center justify-center text-white/70">' +
             '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>' +
+          '</a>' +
+          '<a href="https://hoolter.co.kr" target="_blank" rel="noopener noreferrer" aria-label="훌터 바로가기" class="icon-btn w-10 h-10 rounded-full glass-dark flex items-center justify-center text-white/70">' +
+            '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="' + ICON_PATH_HOOLTER + '"/></svg>' +
+          '</a>' +
+          '<a href="https://mindtoday.co.kr" target="_blank" rel="noopener noreferrer" aria-label="마인드 투데이 바로가기" class="icon-btn w-10 h-10 rounded-full glass-dark flex items-center justify-center text-white/70">' +
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="' + ICON_PATH_MINDTODAY + '"/></svg>' +
           '</a>' +
         '</div>' +
       '</div>';

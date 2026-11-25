@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>관리자 | 위더스온</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/brand_logo/png/favicon-32.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
@@ -154,7 +155,10 @@
 
   <!-- Gallery panel -->
   <main id="galleryPanel" class="hidden max-w-4xl mx-auto px-6 py-8">
-    <p class="text-sm text-inksoft mb-4">사업 페이지 하단 ‘관련 자료’에 보이는 사진입니다. 페이지를 고르고 사진을 올린 뒤 캡션·순서·공개 여부를 정하세요.</p>
+    <p class="text-sm text-inksoft mb-4">사업 페이지 하단 ‘관련 자료’에 보이는 사진입니다. 페이지를 고르고 사진을 올린 뒤 캡션·순서·공개 여부를 정하세요.<br>
+      · 3장 이상이면 사진이 천천히 자동으로 흐르고, 1~2장이면 고정 배치, 0장이면 ‘준비 중’ 안내가 보입니다.<br>
+      · 사진은 <b>세로형(3:4)</b> 카드로 가운데를 기준으로 잘려 보입니다. 세로 사진이나 인물이 가운데 있는 사진이 잘 어울립니다(권장 900×1200px 이상).<br>
+      · 캡션은 사진 왼쪽 아래에 흰 글씨로 들어갑니다. 2줄을 넘으면 잘리니 짧게 적어주세요.</p>
     <div id="galleryPageTabs" class="flex flex-wrap gap-2 mb-5" role="tablist" aria-label="페이지 선택"></div>
     <label id="dropzone" class="dropzone block border-2 border-dashed border-brand-100 rounded-2xl bg-white p-8 text-center cursor-pointer mb-2">
       <input id="galleryFileInput" type="file" accept="image/jpeg,image/png,image/webp" multiple class="sr-only">
@@ -180,7 +184,8 @@
 </div>
 
 <script>
-  var INQUIRY_LABELS = { education: '교육 문의', instructor: '강사 등록 문의', partnership: '제휴 문의', etc: '기타 문의' };
+  // 문의 유형 표시명 (partnership 은 2차 수정 전 옛 값 — 기존 데이터 표시용)
+  var INQUIRY_LABELS = { education: '교육 문의', performance: '공연 문의', instructor: '강사 등록 문의', performer: '연주자 등록 문의', press: '언론사 제휴 및 광고 문의', etc: '기타 문의', partnership: '제휴 문의(이전 유형)' };
   var SESSION_KEY = 'wus_admin_session';
   var SESSION_MAX_AGE = 1000 * 60 * 60 * 2; // 2 hours
 
@@ -310,7 +315,8 @@
       var statusClass = row.status === 'done' ? 'status-done' : 'status-pending';
       var statusLabel = row.status === 'done' ? '완료' : '대기중';
       tr.innerHTML =
-        '<td class="px-4 py-3 font-semibold">' + escapeHtml(row.name) + '</td>' +
+        '<td class="px-4 py-3 font-semibold">' + escapeHtml(row.name) +
+          (attachmentsOf(row).length ? ' <span class="ml-1 text-xs font-medium text-brand-dark" title="첨부 파일">📎' + attachmentsOf(row).length + '</span>' : '') + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(row.phone) + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(row.email) + '</td>' +
         '<td class="px-4 py-3">' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</td>' +
@@ -364,9 +370,59 @@
       '<p><span class="font-bold">이메일</span> ' + escapeHtml(row.email) + '</p>' +
       '<p><span class="font-bold">문의 유형</span> ' + escapeHtml(INQUIRY_LABELS[row.inquiry_type] || row.inquiry_type) + '</p>' +
       '<p><span class="font-bold">접수일</span> ' + formatDate(row.created_at) + '</p>' +
-      '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>';
+      '<p><span class="font-bold">개인정보 동의</span> ' + (row.privacy_agreed ? '동의함 (' + formatDate(row.privacy_agreed_at || row.created_at) + ')' : '<span class="text-inkfaint">기록 없음 (동의 항목 도입 전 문의)</span>') + '</p>' +
+      '<div><p class="font-bold mb-1">문의 내용</p><p class="whitespace-pre-wrap bg-brand-50 rounded-xl p-4">' + escapeHtml(row.message) + '</p></div>' +
+      renderAttachments(row);
     detailModal.classList.remove('hidden');
   }
+
+  // 첨부 파일: 비공개 버킷이라 누를 때마다 서버에서 60초짜리 서명 링크를 받아 내려받는다
+  function attachmentsOf(row) { return Array.isArray(row.attachments) ? row.attachments : []; }
+  function formatSize(bytes) {
+    bytes = Number(bytes) || 0;
+    return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + 'MB' : Math.max(1, Math.round(bytes / 1024)) + 'KB';
+  }
+  function renderAttachments(row) {
+    var list = attachmentsOf(row);
+    if (!list.length) return '';
+    return '<div><p class="font-bold mb-2">첨부 파일 (' + list.length + ')</p><ul class="space-y-2">' +
+      list.map(function (a, i) {
+        return '<li class="flex items-center gap-3 rounded-xl border border-brand-100 px-3.5 py-2.5">' +
+          '<span class="flex-1 min-w-0 truncate">' + escapeHtml(a.name || a.path) + '</span>' +
+          '<span class="text-xs text-inkfaint">' + formatSize(a.size) + '</span>' +
+          '<button type="button" class="att-download text-xs font-bold text-brand-dark px-3 py-1.5 rounded-full bg-brand-50 hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand active:scale-95" data-row="' + escapeHtml(row.id) + '" data-i="' + i + '">다운로드</button>' +
+        '</li>';
+      }).join('') + '</ul><p id="attError" class="hidden mt-2 text-xs font-semibold text-red-600"></p></div>';
+  }
+  document.getElementById('detailContent').addEventListener('click', async function (e) {
+    var btn = e.target.closest('.att-download');
+    if (!btn) return;
+    var row = allRows.find(function (r) { return String(r.id) === btn.getAttribute('data-row'); });
+    var a = row && attachmentsOf(row)[Number(btn.getAttribute('data-i'))];
+    if (!a) return;
+    var errEl = document.getElementById('attError');
+    errEl.classList.add('hidden');
+    btn.disabled = true;
+    try {
+      var res = await apiRequest('/api/admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'attachment-url', path: a.path, name: a.name }),
+      });
+      var data = await res.json();
+      if (!res.ok || !data.url) throw new Error((data && data.error) || '다운로드 링크를 만들지 못했습니다.');
+      var link = document.createElement('a');
+      link.href = data.url;
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      errEl.textContent = err.message;
+      errEl.classList.remove('hidden');
+    }
+    btn.disabled = false;
+  });
   document.getElementById('closeModalBtn').addEventListener('click', function () { detailModal.classList.add('hidden'); });
   detailModal.addEventListener('click', function (e) { if (e.target === detailModal) detailModal.classList.add('hidden'); });
 
@@ -414,8 +470,8 @@
     'vision.badge': '섹션 배지', 'vision.stage1_word1': '1단계 단어 1', 'vision.stage1_word2': '1단계 단어 2',
     'vision.stage1_sub_1': '1단계 설명 1줄', 'vision.stage1_sub_2': '1단계 설명 2줄', 'vision.stage2_word1': '2단계 단어',
     'vision.stage2_sub_1': '2단계 설명 1줄', 'vision.stage2_sub_2': '2단계 설명 2줄',
-    'values.eyebrow': '섹션 배지', 'values.headline': '메인 카피', 'values.card1_title': '카드1 제목', 'values.card1_desc': '카드1 설명',
-    'values.card2_title': '카드2 제목', 'values.card2_desc': '카드2 설명', 'values.card3_title': '카드3 제목', 'values.card3_desc': '카드3 설명',
+    'values.eyebrow': '섹션 배지', 'values.headline': '메인 카피', 'values.card1_title': '카드1 제목', 'values.card1_desc': '핵심가치1 정의 (회사 소개·사업 페이지 공통)',
+    'values.card2_title': '카드2 제목', 'values.card2_desc': '핵심가치2 정의 (회사 소개·사업 페이지 공통)', 'values.card3_title': '카드3 제목', 'values.card3_desc': '핵심가치3 정의 (회사 소개·사업 페이지 공통)',
     'business.eyebrow': '섹션 배지', 'business.headline': '메인 카피',
     'business.card1_title': '교육 카드 제목', 'business.card1_subtitle': '교육 카드 부제', 'business.card1_desc_1': '교육 카드 본문 1줄',
     'business.card1_desc_2': '교육 카드 본문 2줄', 'business.card1_tag1': '교육 카드 뱃지 1', 'business.card1_tag2': '교육 카드 뱃지 2',
@@ -433,6 +489,11 @@
     'mission.shared_title': '공유미션 제목', 'mission.shared_subtitle': '공유미션 부제',
     'mission.card1_desc': 'EDU 카드1', 'mission.card2_desc': 'MIND 카드2', 'mission.card3_desc': 'EDU 카드3', 'mission.card4_desc': 'MIND 카드4',
     'contact.eyebrow': '섹션 배지', 'contact.headline': '헤드라인', 'contact.subcopy_1': '서브카피 1줄', 'contact.subcopy_2': '서브카피 2줄',
+    'business.card1_clients': '교육 카드 주요 고객', 'business.card1_service': '교육 카드 제공 서비스',
+    'business.card2_clients': '훌터 카드 주요 고객', 'business.card2_service': '훌터 카드 제공 서비스',
+    'business.card2_tag4': '훌터 카드 뱃지 4',
+    'business.card3_clients': '공연 카드 주요 고객', 'business.card3_service': '공연 카드 제공 서비스',
+    'business.card4_clients': '언론사 카드 주요 고객', 'business.card4_service': '언론사 카드 제공 서비스',
     'contact.form_submit': '제출 버튼 문구', 'contact.form_success': '제출 성공 메시지',
     'footer.company_name': '회사명', 'footer.info_line1': '대표 / 사업자번호', 'footer.info_line2': '주소',
     'footer.info_line3': '전화 / 팩스', 'footer.info_line4': '이메일', 'footer.copyright': '저작권 문구',
@@ -443,6 +504,11 @@
     overview: '개요', title: '제목', desc: '설명', features: '특징 섹션', feature: '특징',
     process: '과정', step: '단계', fields: '분야', tag: '태그', gallery: '자료 섹션', empty: '빈 상태 안내',
     card: '카드', link: '링크 문구', subtitle: '부제', image: '이미지', alt: '대체 텍스트', programs: '프로그램', item: '항목',
+    items: '목록 (한 줄에 하나씩)', output: '결과물', program: '프로그램', value: '가치', info: '정보 카드', join: '함께하기 카드',
+    kf: '특징 카드', row: '줄', target: '대상 칩', name: '프로그램명', sub: '부제',
+    why: 'WHY HOOLTER', a: '왼쪽(기존 방식)', b: '오른쪽(훌터)', steps: '흐름 (한 줄에 하나씩)', k2: '아래 라벨',
+    cat: '카테고리', plus: '맞춤 구성 문구', experts: '전문가 띠',
+    values: '핵심 가치', guide: '운영 안내', band: '안내 띠', label: '라벨', tags: '칩 (한 줄에 하나씩)', clients: '주요 고객', service: '제공 서비스',
   };
   function autoLabel(key) {
     if (LABELS[key]) return LABELS[key];
