@@ -37,8 +37,8 @@
 |---|---|---|
 | `docs/homepage_edit_v2.pptx` | 수정안 원본 | 아래 방법으로 읽기·이미지 추출 |
 | `홈페이지 개인정보처리방침.txt` | 개인정보처리방침 전문 | Phase 2에서 `privacy.html`로 변환 |
-| `hoolter-footer.png` | 푸터 훌터 아이콘 원본 | `assets/img/footer/hoolter.png`(+ 필요 시 WebP·2x)로 최적화 |
-| `mindtoday-footer.png` | 푸터 마인드 투데이 아이콘 원본 | `assets/img/footer/mindtoday.png`로 최적화 |
+| `hoolter-footer.png` | 푸터 훌터 아이콘 원본 | `assets/images/footer/hoolter.png`(+ 필요 시 WebP·2x)로 최적화 |
+| `mindtoday-footer.png` | 푸터 마인드 투데이 아이콘 원본 | `assets/images/footer/mindtoday.png`로 최적화 |
 
 **PPT 읽기**
 - `python-pptx`로 텍스트를 추출하고, LibreOffice로 PDF/PNG를 렌더링해 각 슬라이드를 **눈으로 확인**한다. 빨간 박스가 가리키는 위치를 이 문서와 대조하기 위해서다.
@@ -48,8 +48,8 @@
 
 | 슬라이드 | 도형 이름 | 내용 | 저장 위치(제안) | 용도 |
 |---|---|---|---|---|
-| 18 | 그림 2 | leaflet 목업(모니터·노트북·폰, 투명 배경 4400px) | `assets/img/platform/overview-devices.webp` (알파 유지, 긴 변 1600px) | 훌터 Overview 이미지 |
-| 20 | 그림 14 | 회사소개서 카드 4장(지도 검색·바우처 검색·공공 기반 정보·콜버튼) | 카드별 목업 영역만 잘라 `assets/img/platform/info-01~04.webp` | 훌터 '확인하는 정보' 카드 이미지 |
+| 18 | 그림 2 | leaflet 목업(모니터·노트북·폰, 투명 배경 4400px) | `assets/images/platform/overview-devices.webp` (알파 유지, 긴 변 1600px) | 훌터 Overview 이미지 |
+| 20 | 그림 14 | 회사소개서 카드 4장(지도 검색·바우처 검색·공공 기반 정보·콜버튼) | 카드별 목업 영역만 잘라 `assets/images/platform/info-01~04.webp` | 훌터 '확인하는 정보' 카드 이미지 |
 | 13, 14, 21 | 그림 4 / 그림 4 / 그림 2 | 공연 핵심가치, 공연 진행 절차, 훌터 핵심가치 | 참고용 | 문구는 아래 표에 옮겨 둠 |
 
 ### 0-3. ⚠️ 문구 수정 시 DB 덮어쓰기 주의 (가장 중요)

@@ -1,5 +1,6 @@
 # 작업 문서는 배포하지 않는다 (공개 URL로 노출 방지)
-edit/
+_guide/
+_work/
 assets/docs/
 # DB 설정 SQL (DB 구조·보안 정책 노출 방지 — Supabase SQL Editor 에서만 사용)
 supabase/

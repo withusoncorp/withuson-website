@@ -26,7 +26,7 @@
 | `assets/css/site.css` | 컴포넌트 스타일 추가: `biz-kv`·`biz-more`, `vb-*`, `gd-*`, `fc-*`, `kf-*`, `why-*`<br>삭제: `proc-step`·`proc-num`·`proc-lg` (공연 FIELDS가 쓰는 `proc-list`는 유지) |
 | `wuoadmin/index.html` | 새 키의 관리자 라벨. `values.card*_desc`는 '회사 소개·사업 페이지 공통'으로 표시 |
 | `supabase/edit_v3_content.sql` (신규) | DB 옛 문구 갱신 8개 키 |
-| `edit/edit_v3_key_map.md` (신규) | 섹션 현황, DB 점검, 새 키·쓰지 않는 키 전체 목록 |
+| `_work/edit_v3_key_map.md` (신규) | 섹션 현황, DB 점검, 새 키·쓰지 않는 키 전체 목록 |
 
 ## 2. 섹션 구조 (실제 반영 결과)
 
@@ -72,7 +72,7 @@
 
 ## 3. `data-ck` 키
 
-키별 상세는 `edit/edit_v3_key_map.md`에 있다.
+키별 상세는 `_work/edit_v3_key_map.md`에 있다.
 
 ### 새 키
 

@@ -1,6 +1,6 @@
 # 위더스온 홈페이지 2차 수정(v2) 최종 보고
 
-- 기준: `edit/homepage_upgrade_v2_prompt.md`, 수정안 `assets/docs/homepage_edit_v2.pptx` (28장)
+- 기준: `_work/homepage_upgrade_v2_prompt.md`, 수정안 `assets/docs/homepage_edit_v2.pptx` (28장)
 - 작업 브랜치: `feature/multipage` (미리보기). 운영 `main` 은 원페이지 그대로이며 배포는 사용자 확인 후 진행
 - 작성일: 2026-11-24
 
@@ -40,7 +40,7 @@
 | `wuoadmin/index.html` | 문의 유형 표시명, 첨부 다운로드·동의 기록, 관련 자료 업로드 안내, 새 키 이름표 |
 | `supabase/edit_v2_content.sql` (신규) | DB에 옛 문구가 남은 키 6개 갱신 |
 | `supabase/edit_v2_form.sql` (신규) | 문의 테이블 컬럼·제약·트리거, 비공개 첨부 버킷, 업로드 전용 정책 |
-| `assets/img/footer/*.svg`, `assets/img/platform/*.webp` (신규) | 푸터 아이콘, 훌터 목업 이미지 |
+| `assets/images/footer/*.svg`, `assets/images/platform/*.webp` (신규) | 푸터 아이콘, 훌터 목업 이미지 |
 | `sitemap.xml`, `.vercelignore` | `/privacy` 추가 / 작업 문서 배포 제외 |
 
 ### 최종 메뉴 구조
