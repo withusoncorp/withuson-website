@@ -1,5 +1,10 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/brand_logo/:path*", "destination": "/assets/brand/:path*", "permanent": true },
+    { "source": "/png/og-image.png", "destination": "/assets/images/og-image.png", "permanent": true },
+    { "source": "/assets/img/:path*", "destination": "/assets/images/:path*", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

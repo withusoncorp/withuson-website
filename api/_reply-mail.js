@@ -16,7 +16,7 @@ const COMPANY = {
   email: 'withusoncorp@withusoncorp.co.kr',
   address: '서울특별시 동대문구 전농로 82, JM빌딩 3층',
   site: 'https://www.withusoncorp.co.kr',
-  logo: 'https://www.withusoncorp.co.kr/brand_logo/logo.png',
+  logo: 'https://www.withusoncorp.co.kr/assets/brand/logo.png',
 };
 
 const FROM = '위더스온 <noreply@withusoncorp.co.kr>';

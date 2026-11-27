@@ -74,11 +74,17 @@ ink: '#26301C', inksoft: '#5C6653', inkfaint: '#8B9280', canvas: '#FBFAF3',
 ├── index.html              # 메인 페이지 (전체 마크업+스타일+스크립트 단일 파일)
 ├── vercel.json              # 보안 헤더 설정
 ├── robots.txt / sitemap.xml # SEO
-├── png/                      # 파비콘, OG 이미지 등 유틸리티 png 모음
-│   └── og-image.png, favicon-32.png, apple-touch-icon.png, icon-512.png
-├── brand_logo/
-│   ├── logo.png             # 헤더용 (가로형, 다크그린)
-│   └── logo_footer.png      # 푸터용 (가로형, 크림색 - 다크 배경용)
+├── assets/
+│   ├── brand/               # 브랜드 로고 (2026-11-27 brand_logo/에서 이동)
+│   │   ├── logo.png         # 헤더용 (가로형, 다크그린)
+│   │   ├── logo_footer.png  # 푸터용 (가로형, 크림색 - 다크 배경용)
+│   │   └── png/             # favicon-32.png, icon-512.png, icon.png(apple-touch)
+│   └── images/              # 사이트 이미지 (2026-11-27 png/·assets/img/를 합침)
+│       ├── og-image.png     # OG 이미지
+│       ├── footer/          # 푸터 훌터·마인드 투데이 아이콘 원본 SVG
+│       └── platform/        # 훌터 목업 webp
+├── _guide/                  # 작업 지침·원고 (claude_*.md, text.txt) — 배포 제외
+├── _work/                   # 작업 보고서·프롬프트 (옛 edit/) — 배포 제외
 ├── wuoadmin/
 │   └── index.html           # 관리자 페이지 (문의 관리 + 문구 관리)
 ├── api/

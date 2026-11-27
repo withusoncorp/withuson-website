@@ -1,6 +1,6 @@
 # 2차 수정(v2) — 현재 data-ck 키 현황과 수정 항목 매핑
 
-> Phase 0-1 산출물 (2026-11-23, 브랜치 `feature/multipage` 기준). 작업 명세: `edit/homepage_upgrade_v2_prompt.md`
+> Phase 0-1 산출물 (2026-11-23, 브랜치 `feature/multipage` 기준). 작업 명세: `_work/homepage_upgrade_v2_prompt.md`
 
 ## A. 수정 항목 → 키 매핑
 
@@ -28,7 +28,7 @@
 | 4-2 P8·P9 | 공연 프로그램 카드 3장 | `performance.fields_headline`, `fields_subcopy`, `fields_tag1` | 제목 교체, **새 키 `performance.program1~3_title/_items/_tag1~2`** → `fields_subcopy`·`fields_tag1` 미사용 |
 | 4-2 P10·P11 | Resources | `performance.gallery_headline/_subcopy` | 교체 |
 | 5-1 H1·H2 | 훌터 히어로 | `platform.hero_headline_highlight`, `platform.hero_subcopy` | 교체 |
-| 5-1 H3·H4 | 훌터 Overview | `platform.overview_title`, `platform.overview_image` | 교체, 이미지 `assets/img/platform/overview-devices.webp` |
+| 5-1 H3·H4 | 훌터 Overview | `platform.overview_title`, `platform.overview_image` | 교체, 이미지 `assets/images/platform/overview-devices.webp` |
 | 5-1 H5 | 특징 카드 5장 | `platform.feature1~4_title/_desc` | 교체 + **새 키 `platform.feature5_*`, `platform.feature1~5_tag1~2`** |
 | 5-1 H7 | 핵심가치 3장 | `platform.process_step1~3_title/_desc` | 키 유지·문구 교체(구조: 연결선 제거) |
 | 5-1 H8~H10 | 확인하는 정보 카드 4장 | `platform.fields_headline/_subcopy`, `fields_tag1~5` | 제목·서브 교체, **새 키 `platform.info1~4_title/_desc`, data-img `platform.info1~4_image`** → `fields_tag1~5` 미사용 |

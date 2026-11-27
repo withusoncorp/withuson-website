@@ -5,7 +5,7 @@
  * 드롭다운(데스크톱)과 아코디언(모바일)이 자동으로 생긴다.
  *   - 같은 페이지 섹션: { label: '프로그램 목록', href: '/education#programs' }
  *   - 별도 페이지:      { label: '강사 소개',   href: '/education-instructors' }
- * 자세한 절차는 claude_homepage.md 의 "하위 메뉴 추가 방법" 참고.
+ * 자세한 절차는 _guide/claude_homepage.md 의 "하위 메뉴 추가 방법" 참고.
  *
  * 라벨 전환 옵션 (선택, 어느 메뉴에나 붙일 수 있음)
  *   - hoverLabel:  데스크톱에서 마우스를 올리거나 키보드 포커스가 가면 보이는 라벨
